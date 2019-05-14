@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="CUSTOM" importedAsReadOnly="false" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration process_explicitly_annotated="false">
+        <fileset id="myExtentionspring" name="myExtentionspring" removed="false">
+          <file>file://$MODULE_DIR$/../project.properties</file>
+          <file>file://$MODULE_DIR$/../resources/myExtention-spring.xml</file>
+          <file>file://$MODULE_DIR$/../web/webroot/WEB-INF/config/myExtention-web-app-config.xml</file>
+          <file>file://$MODULE_DIR$/../web/webroot/WEB-INF/config/myExtention-spring-security-config.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/../web/webroot/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/../web/webroot" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/../src" />
+          <root url="file://$MODULE_DIR$/../gensrc" />
+          <root url="file://$MODULE_DIR$/../resources" />
+          <root url="file://$MODULE_DIR$/../web/src" />
+          <root url="file://$MODULE_DIR$/../web/gensrc" />
+          <root url="file://$MODULE_DIR$/../commonweb/src" />
+          <root url="file://$MODULE_DIR$/../commonweb/gensrc" />
+          <root url="file://$MODULE_DIR$/../acceleratoraddon/web/src" />
+          <root url="file://$MODULE_DIR$/../acceleratoraddon/web/gensrc" />
+          <root url="file://$MODULE_DIR$/../backoffice/src" />
+          <root url="file://$MODULE_DIR$/../backoffice/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/..">
+      <sourceFolder url="file://$MODULE_DIR$/../src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../backoffice/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../backoffice/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../backoffice/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../backoffice/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../backoffice/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/../bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../classes" />
+      <excludeFolder url="file://$MODULE_DIR$/../commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../web/webroot/WEB-INF/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/asm-3.3.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/bsh-2.0b5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/oro-2.0.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/guava-23.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/junit-4.12.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/mail-1.4.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jaxen-1.1.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/kxml2-2.3.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/xalan-2.7.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/xmlenc-0.52.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/ddlutils-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/easymock-3.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/httpunit-1.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jsr305-2.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jstl-api-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/log4j-1.2.17.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/pmd-vm-5.5.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/rxjava-1.1.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/velocity-1.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/wss4j-1.6.19.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/xmlsec-2.1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/cloning-1.9.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/ehcache-2.9.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/hk2-2.4.0-b31.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/hybriskey-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/objenesis-1.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/paranamer-2.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/pmd-jsp-5.5.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/pmd-xml-5.5.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-el-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-io-2.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/fastutil-6.5.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/httpcore-4.4.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/httpmime-4.5.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/json-smart-2.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/pmd-core-5.5.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/pmd-java-5.5.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/aopalliance-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/fest-assert-1.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/fest-util-1.1.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/joda-time-2.9.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/json-path-2.4.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/log4j-api-2.9.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/mime-util-2.1.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/stax2-api-3.1.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/charon-1.2.4-RC1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-dbcp-1.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-jexl-1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-lang-2.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-pool-1.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/hamcrest-all-1.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/httpclient-4.5.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/javolution-5.5.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/log4j-core-2.9.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/orika-core-1.5.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/pmd-groovy-5.5.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/serializer-2.7.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/slf4j-api-1.7.21.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/xml-combiner-2.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/annotations-2.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/cglib-nodep-2.2.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-email-1.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-lang3-3.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/groovy-all-2.4.11.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/hk2-api-2.4.0-b31.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/assertj-core-3.5.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-codec-1.10.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jackson-core-2.9.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/metrics-core-3.1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/reflections-0.9.11.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/accessors-smart-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/bcprov-jdk15on-1.55.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/btc-ascii-table-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-logging-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-pool2-2.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/hk2-utils-2.4.0-b31.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jersey-guava-2.25.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/likey-no-iaik-1.0.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-digester-2.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jcip-annotations-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jersey-client-2.25.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jersey-common-2.25.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jersey-server-2.25.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jgroups-3.6.11.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/mockito-core-1.10.19.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/pmd-javascript-5.5.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/powermock-core-1.7.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/ant-commons-net-1.6.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-discovery-0.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/hk2-locator-2.4.0-b31.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/hybris-encryption-1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/javax.ws.rs-api-2.0.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jcl-over-slf4j-1.7.21.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jersey-spring3-2.25.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/swagger-models-1.5.14.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jackson-databind-2.9.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/javax.inject-2.4.0-b31.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/log4j-slf4j-impl-2.9.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/aspectjweaver-1.9.0.RC2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-beanutils-1.9.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-validator-1.4.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jackson-core-asl-1.9.13.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/netty-codec-4.1.5.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/powermock-reflect-1.7.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/woodstox-core-asl-4.4.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-collections4-4.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-fileupload-1.3.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/netty-buffer-4.1.5.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/netty-common-4.1.5.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-tx-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-xml-2.4.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-collections-3.2.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jackson-annotations-2.9.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jackson-mapper-asl-1.9.13.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/netty-handler-4.1.5.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spock-core-1.1-groovy-2.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-aop-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-jms-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-orm-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-oxm-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-web-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/velocity-tools-2.0-alpha1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/commons-configuration-1.10.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/easymockclassextension-3.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/netty-resolver-4.1.5.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/reactor-core-1.1.6.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-core-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-jdbc-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-test-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/swagger-annotations-1.5.14.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/netty-transport-4.1.5.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/powermock-api-mockito-1.7.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/powermock-api-support-1.7.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-beans-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/netty-codec-http-4.1.5.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-session-1.2.2.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-webmvc-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/netty-codec-socks-4.1.5.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/powermock-module-junit4-1.7.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-aspects-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-context-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-hateoas-0.21.0.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/hybris-simple-statistics-1.0.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jersey-apache-connector-2.25.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jersey-entity-filtering-2.25.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/concurrentlinkedhashmap-lru-1.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/netty-handler-proxy-4.1.5.Final.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-messaging-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jersey-media-json-jackson-2.25.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-expression-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-instrument-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/jersey-test-framework-core-2.25.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-security-web-4.2.4.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/powermock-api-mockito-common-1.7.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-security-core-4.2.4.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/powermock-module-junit4-common-1.7.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-security-config-4.2.4.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-context-support-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-security-taglibs-4.2.4.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-integration-core-4.3.14.RELEASE.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/com.sap.security.core.server.csi-1.00.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/lib/spring-instrument-tomcat-4.3.14.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../platform/ext/core/bin/coreserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Platform Bootstrap" level="project" />
+  </component>
+</module>
