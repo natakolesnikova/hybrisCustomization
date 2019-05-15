@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+
+	<classpathentry exported="true" kind="src" path="/cms2" />
+	<classpathentry exported="true" kind="src" path="/commerceservices" />
+	<classpathentry exported="true" kind="src" path="/ticketsystem" />
+	<classpathentry exported="true" kind="src" path="/springintegrationlibs" />
+	<classpathentry exported="true" kind="lib" path="lib/commons-net-3.0.1.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/org.jacoco.ant-0.7.6.201602180812.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/velocity-tools-2.0.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/yimpexgenerator-2.0.0.0.jar" />
+	<classpathentry exported="false" kind="lib" path="web/webroot/WEB-INF/lib/jstl-impl-1.2.jar" />
+	<classpathentry exported="true" kind="lib" path="resources" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="src" />
+	<classpathentry exported="false" output="eclipsebin/web/classes" kind="src" path="web/src" />
+	<classpathentry exported="false" output="eclipsebin/web/classes" kind="src" path="web/testsrc" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="testsrc" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="gensrc" />
+	<classpathentry exported="false" kind="src" path="/platform" />
+				
+</classpath>
+				

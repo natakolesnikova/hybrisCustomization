@@ -1,0 +1,330 @@
+/*================================
+    PerspectiveChooser Popup (Systembar)
+================================*/
+/*================================
+    Systembar Mixins
+================================*/
+/*================================
+    Systembar Variables
+================================*/
+.yw-perspective-popup {
+  top: 50px !important;
+  width: 240px;
+  border: none; }
+  .yw-perspective-popup .z-treechildren {
+    background-color: #32a0ec; }
+  .yw-perspective-popup .z-treerow {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: none; }
+    .yw-perspective-popup .z-treerow:hover {
+      background-color: #84c6f4; }
+    .yw-perspective-popup .z-treerow.yw-perspective-popup-level0 .yw-perspective-popup-treecell {
+      padding-left: 15px; }
+    .yw-perspective-popup .z-treerow.yw-perspective-popup-level1 .yw-perspective-popup-treecell {
+      padding-left: 25px; }
+    .yw-perspective-popup .z-treerow.yw-perspective-popup-level2 .yw-perspective-popup-treecell {
+      padding-left: 35px; }
+    .yw-perspective-popup .z-treerow.yw-perspective-popup-level3 .yw-perspective-popup-treecell {
+      padding-left: 45px; }
+    .yw-perspective-popup .z-treerow.yw-perspective-popup-level4 .yw-perspective-popup-treecell {
+      padding-left: 55px; }
+    .yw-perspective-popup .z-treerow.yw-perspective-popup-level5 .yw-perspective-popup-treecell {
+      padding-left: 65px; }
+    .yw-perspective-popup .z-treerow .z-treecell {
+      padding: 10px;
+      background: none; }
+    .yw-perspective-popup .z-treerow .z-treecell-content {
+      line-height: normal;
+      position: static;
+      color: #ffffff;
+      font-weight: normal;
+      font-size: 14px;
+      font-family: "Open Sans", sans-serif; }
+    .yw-perspective-popup .z-treerow > .z-treecell > .z-treecell-content {
+      color: #ffffff; }
+    .yw-perspective-popup .z-treerow.z-treerow-selected {
+      background-color: #5bb3f0; }
+      .yw-perspective-popup .z-treerow.z-treerow-selected:hover {
+        background-color: #84c6f4; }
+  .yw-perspective-popup .z-treecell-content {
+    padding: 0; }
+    .yw-perspective-popup .z-treecell-content .z-tree-spacer {
+      display: none; }
+    .yw-perspective-popup .z-treecell-content .z-treecell-text {
+      display: inline-block; }
+      .yw-perspective-popup .z-treecell-content .z-treecell-text img {
+        margin-right: 10px; }
+    .yw-perspective-popup .z-treecell-content .z-tree-icon {
+      text-align: left;
+      padding: 15px; }
+  .yw-perspective-popup .z-tree {
+    border: none; }
+  .yw-perspective-popup .z-icon-caret-right {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -2px;
+    margin-top: -7px; }
+  .yw-perspective-popup .z-icon-caret-down {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -4px;
+    margin-top: -7px; }
+  .yw-perspective-popup .z-icon-caret-right:before,
+  .yw-perspective-popup .z-icon-caret-down:before {
+    color: #ffffff; }
+
+/*================================
+    PerspectiveChooser Menu (Systembar)
+================================*/
+/*================================
+    Systembar Variables
+================================*/
+.yw-perspective-breadcrumb {
+  cursor: pointer;
+  float: left;
+  position: relative;
+  display: block;
+  padding: 9px 16px;
+  margin-right: 0; }
+  .z-hlayout-inner + .z-hlayout-inner .yw-perspective-breadcrumb {
+    border-left: 1px solid rgba(255, 255, 255, 0.1); }
+  .yw-perspective-breadcrumb .z-caption {
+    width: auto;
+    display: inline-block; }
+  .yw-perspective-breadcrumb .z-caption,
+  .yw-perspective-breadcrumb .z-icon-caret-down {
+    color: #ffffff; }
+  .yw-perspective-breadcrumb.yw-perspective-breadcrumb-expanded {
+    background: #32a0ec; }
+  .yw-perspective-breadcrumb .z-caption-content {
+    line-height: 32px;
+    padding: 0; }
+  .yw-perspective-breadcrumb .z-caption-image {
+    margin-right: 5px; }
+  .yw-perspective-breadcrumb .z-menu-icon {
+    display: inline-block;
+    position: static;
+    font-size: 28px;
+    line-height: 32px;
+    margin-left: 10px;
+    vertical-align: top; }
+  @media (max-width: 499px) {
+    .yw-perspective-breadcrumb .z-caption-content {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 50px; }
+    .yw-perspective-breadcrumb .z-caption-image {
+      display: none; }
+    .yw-perspective-breadcrumb .z-menu-icon {
+      margin-left: 0; } }
+
+.yw-perspective-menu .z-menubar-horizontal {
+  background-color: transparent; }
+  .yw-perspective-menu .z-menubar-horizontal .yw-domain-node {
+    display: table-cell;
+    margin-right: 0;
+    margin-left: 1px; }
+    .yw-perspective-menu .z-menubar-horizontal .yw-domain-node:first-child {
+      margin-left: 0; }
+    .yw-perspective-menu .z-menubar-horizontal .yw-domain-node .z-menuitem-content {
+      background-color: #0486e0;
+      height: 50px;
+      min-width: 50px;
+      z-index: initial;
+      display: table-cell;
+      vertical-align: middle;
+      line-height: initial;
+      margin: auto 0;
+      text-align: center;
+      table-layout: fixed;
+      padding: 0; }
+    .yw-perspective-menu .z-menubar-horizontal .yw-domain-node .z-menuitem-content:hover, .yw-perspective-menu .z-menubar-horizontal .yw-domain-node.yw-selectednode .z-menuitem-content {
+      background-color: #32a0ec; }
+    .yw-perspective-menu .z-menubar-horizontal .yw-domain-node .z-menuitem-text {
+      vertical-align: middle; }
+    .yw-perspective-menu .z-menubar-horizontal .yw-domain-node .z-menuitem-text:empty {
+      display: none; }
+    .yw-perspective-menu .z-menubar-horizontal .yw-domain-node .z-menuitem-image {
+      top: auto; }
+
+/*
+.yw-com_hybris_backoffice_perspectiveChooser {
+  .yw-perspective-items {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+
+  .yw-perspective-menu {
+    background: transparent;
+    border: none;
+    padding: 0;
+
+    .z-menuitem,
+    .z-menu-button {
+      color: $systembar__default--font-color;
+    }
+
+    .z-menuitem {
+      width: auto;
+      height: 40px;
+
+      &:hover {
+        background-color: #0F56BF !important;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+    }
+
+    .z-menuitem-content {
+      height: 100%;
+
+      &:hover {
+        background: none;
+      }
+    }
+
+    .z-menu-button {
+      width: 28px;
+    }
+
+    .z-menu-body-selected {
+      .z-menu-inner-m div,
+      .z-menuitem-inner-m div {
+        border: $systembar__perspective-menu--border;
+        border-bottom: none;
+        padding: 2px 2px 5px 2px;
+        background: url("images/tinyArrow_down.png") no-repeat center 31px $white;
+      }
+    }
+  }
+}
+
+.yw-com_hybris_backoffice_perspectiveChooser {
+
+  .yw-domain-node {
+    padding: 0 !important;
+
+    .z-menuitem-content {
+      line-height: 15px;
+      padding: 5px;
+      min-height: 20px;
+
+      .z-menuitem-image {
+        top: 0;
+      }
+
+      .z-menuitem-text {
+        margin: 0;
+      }
+    }
+  }
+
+  .yw-perspective-menu .yw-domain-node-label {
+    .z-menuitem-button,
+    .z-menu-button {
+      color: $black;
+      font-weight: bold;
+      width: auto;
+      background: none;
+    }
+  }
+
+  .yw-domain-node {
+    .z-menu-body,
+    .z-menuitem-body {
+      opacity: 0.5;
+    }
+
+    &:hover .z-menu-body,
+    &:hover .z-menuitem-body,
+    .z-menu-body-selected {
+      opacity: 1;
+    }
+
+    .z-menu-body:hover,
+    .z-menuitem-body:hover {
+      background: transparent;
+    }
+
+    .z-menu-inner-l,
+    .z-menu-inner-r,
+    .z-menuitem-inner-l,
+    .z-menuitem-inner-r {
+      display: none;
+    }
+
+    .z-menu-inner-m,
+    .z-menuitem-inner-m {
+      background-image: none !important;
+      padding: 0;
+    }
+
+    .z-menu-inner-m div {
+      padding: 0;
+      background-image: none;
+    }
+
+    .z-menuitem-button,
+    .z-menu-button {
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  .yw-selectednode .z-menu-body,
+  .yw-selectednode .z-menuitem-body {
+    opacity: 1;
+  }
+}
+
+.yw-perspective-item .z-menuitem-image {
+  background-size: 16px;
+  background-repeat: no-repeat;
+}
+
+.yw-selectedsubnode {
+  background: #d1d6dc;
+
+  .z-menuitem-content {
+    font-weight: bold;
+  }
+}
+
+.yw-perspective-dropdown {
+  background: none;
+  border: none;
+  padding: 0;
+
+  .z-menupopup-content {
+    margin-top: -3px !important;
+    display: block;
+    border: $systembar__perspective-menu--border;
+    border-bottom: none;
+    background: url("images/dropdownGradient.png");
+  }
+
+  .yw-perspective-item {
+    border-bottom: $systembar__perspective-item--border;
+
+    .z-menuitem-cl a.z-menuitem-content {
+      color: #162C5E;
+    }
+
+    &.z-menuitem:hover {
+      border-top: none;
+      background: #bbc2cb;
+
+      .z-menuitem-cl a.z-menuitem-content {
+        color: $white;
+      }
+    }
+  }
+}
+*/

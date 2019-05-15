@@ -1,0 +1,34 @@
+.ye-com_hybris_cockpitng_editor_boolean_wrapper {
+  float: left; }
+
+.yw-editorarea-tabbox .z-groupbox-content span.ye-com_hybris_cockpitng_editor_defaultboolean.z-radiogroup {
+  display: inline-block; }
+.yw-editorarea-tabbox .z-groupbox-content .ye-com_hybris_cockpitng_editor_boolean_wrapper .z-hbox {
+  width: auto;
+  max-width: 100%; }
+  .yw-editorarea-tabbox .z-groupbox-content .ye-com_hybris_cockpitng_editor_boolean_wrapper .z-hbox td table td {
+    display: inline-block;
+    height: auto !important;
+    line-height: 40px !important;
+    margin-right: 5px; }
+    .yw-editorarea-tabbox .z-groupbox-content .ye-com_hybris_cockpitng_editor_boolean_wrapper .z-hbox td table td.z-hbox-separator {
+      line-height: 0 !important;
+      display: inline;
+      margin: 0; }
+
+.y-editor-area-attributes-cnt-min .yw-editorarea-tabbox .z-groupbox-content .ye-com_hybris_cockpitng_editor_boolean_wrapper .z-hbox td table td {
+  width: calc(100% - 10px); }
+
+@media screen and (min-width: 400px) and (max-width: 1199px) {
+  .yw-editorarea-tabbox-tabs .z-groupbox-content .ye-com_hybris_cockpitng_editor_boolean_wrapper {
+    width: 100%; }
+    .yw-editorarea-tabbox-tabs .z-groupbox-content .ye-com_hybris_cockpitng_editor_boolean_wrapper .z-hbox {
+      table-layout: inherit; }
+      .yw-editorarea-tabbox-tabs .z-groupbox-content .ye-com_hybris_cockpitng_editor_boolean_wrapper .z-hbox table {
+        width: auto;
+        max-width: 100%; } }
+@media screen and (min-width: 1200px) and (max-width: 2000px) {
+  .yw-editorarea-tabbox-tabs .z-groupbox-content .ye-com_hybris_cockpitng_editor_boolean_wrapper .z-hbox {
+    min-width: 50%; } }
+.yw-wizard-property .ye-com_hybris_cockpitng_editor_boolean_wrapper {
+  float: none; }

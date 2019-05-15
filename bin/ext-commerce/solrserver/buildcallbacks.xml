@@ -1,0 +1,483 @@
+<?xml version="1.0"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<project name="solrserver_buildcallbacks">
+
+	<target name="buildSolrComponents">
+		<callback extname="" target="before_buildSolrComponents" />
+		<buildSolrComponents />
+		<callback extname="" target="after_buildSolrComponents" />
+	</target>
+
+	<target name="createSolrInstance" description="Creates a Solr instance [allowed parameters: -Dinstance.name -Dinstance.conf.dir -Dinstance.data.dir -Dinstance.log.dir].">
+		<callback extname="" target="before_createSolrInstance" />
+		<createSolrInstance />
+		<callback extname="" target="after_createSolrInstance" />
+	</target>
+
+	<target name="deleteSolrInstance" description="Deletes a Solr instance [allowed parameters: -Dinstance.name -Dinstance.conf.dir -Dinstance.data.dir -Dinstance.log.dir].">
+		<callback extname="" target="before_deleteSolrInstance" />
+		<deleteSolrInstance />
+		<callback extname="" target="after_deleteSolrInstance" />
+	</target>
+
+	<target name="startSolrServer" depends="createSolrInstance" description="Starts a Solr server [allowed parameters: -Dinstance.name -Dinstance.hostname -Dinstance.port -Dinstance.mode -Dinstance.conf.dir -Dinstance.data.dir -Dinstance.log.dir -Dinstance.memory -Dinstance.javaoptions -Dinstance.zk.host -Dinstance.zk.upconfig -Dinstance.authtype -Dinstance.user -Dinstance.password -Dinstance.ssl.enabled -Dinstance.ssl.keyStoreType -Dinstance.ssl.keyStore -Dinstance.ssl.keyStorePassword -Dinstance.ssl.trustStoreType -Dinstance.ssl.trustStore -Dinstance.ssl.trustStorePassword -Dinstance.ssl.needClientAuth -Dinstance.ssl.wantClientAuth].">
+		<callback extname="" target="before_startSolrServer" />
+		<startSolrServerAndUploadConfig />
+		<callback extname="" target="after_startSolrServer" />
+	</target>
+
+	<target name="uploadSolrConfig" description="Uploads configuration into a ZooKepeer instance. [allowed parameters: -Dinstance.name -Dinstance.port -Dinstance.mode -Dinstance.conf.dir -Dinstance.zk.host].">
+		<callback extname="" target="before_uploadSolrConfig" />
+		<uploadSolrConfig />
+		<callback extname="" target="after_uploadSolrConfig" />
+	</target>
+
+	<target name="stopSolrServer" description="Stops a Solr server [allowed parameters: -Dinstance.name -Dinstance.port -Dinstance.data.dir].">
+		<callback extname="" target="before_stopSolrServer" />
+		<stopSolrServer />
+		<callback extname="" target="after_stopSolrServer" />
+	</target>
+
+	<target name="configureSolrServer" depends="buildSolrComponents" description="Applies Hybris customizations on the Solr server [allowed parameters: -DsolrServerPath]">
+		<callback extname="" target="before_configureSolrServer" />
+		<configureSolrServer />
+		<callback extname="" target="after_configureSolrServer" />
+	</target>
+
+	<macrodef name="buildSolrComponents">
+		<sequential>
+			<delete dir="${ext.solrserver.path}/solrclasses" />
+			<mkdir dir="${ext.solrserver.path}/solrclasses" />
+
+			<javacompile destdir="${ext.solrserver.path}/solrclasses">
+				<source>
+					<pathelement path="${ext.solrserver.path}/solrsrc" />
+				</source>
+				<additionalclasspath>
+					<fileset dir="${ext.solrserver.path}/resources/solr/server/solr-webapp/webapp/WEB-INF/lib">
+						<include name="**.jar" />
+					</fileset>
+				</additionalclasspath>
+			</javacompile>
+
+			<jar destfile="${ext.solrserver.path}/resources/solrCustomizations/files/contrib/hybris/lib/hybriscomponents.jar">
+				<fileset dir="${ext.solrserver.path}/solrclasses" />
+				<manifest>
+					<attribute name="Built-By" value="hybris" />
+					<section name="common">
+						<attribute name="Implementation-Title" value="hybris Solr components" />
+						<attribute name="Implementation-Version" value="${hybris.build.version}-${DSTAMP}" />
+						<attribute name="Implementation-Vendor" value="hybris" />
+					</section>
+				</manifest>
+			</jar>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="createSolrInstance">
+		<sequential>
+			<property name="instance.name" value="default" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="config.dir" defaultValue="${HYBRIS_CONFIG_DIR}/solr/instances/${instance.name}" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="data.dir" defaultValue="${HYBRIS_DATA_DIR}/solr/instances/${instance.name}" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="log.dir" defaultValue="${HYBRIS_LOG_DIR}/solr/instances/${instance.name}" />
+
+			<echo>Creating Solr instance [name=${instance.name}]</echo>
+
+			<if>
+				<available file="${instance.config.dir}" />
+				<then />
+				<else>
+					<copy file="${ext.solrserver.path}/resources/solr/server/resources/log4j.properties" todir="${instance.config.dir}" />
+					<copy file="${ext.solrserver.path}/resources/solr/server/solr/security.json.example" tofile="${instance.config.dir}/security.json" />
+					<copy file="${ext.solrserver.path}/resources/solr/server/solr/solr.jks" todir="${instance.config.dir}" />
+					<copy file="${ext.solrserver.path}/resources/solr/server/solr/solr.xml" todir="${instance.config.dir}" />
+					<copy file="${ext.solrserver.path}/resources/solr/server/solr/zoo.cfg" todir="${instance.config.dir}" />
+
+					<mkdir dir="${instance.config.dir}/configsets" />
+
+					<copy todir="${instance.config.dir}/configsets">
+						<fileset dir="${ext.solrserver.path}/resources/solr/server/solr/configsets" includes="**" />
+					</copy>
+				</else>
+			</if>
+
+			<mkdir dir="${instance.data.dir}" />
+			<mkdir dir="${instance.log.dir}" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="deleteSolrInstance">
+		<sequential>
+			<property name="instance.name" value="default" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="config.dir" defaultValue="${HYBRIS_CONFIG_DIR}/solr/instances/${instance.name}" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="data.dir" defaultValue="${HYBRIS_DATA_DIR}/solr/instances/${instance.name}" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="log.dir" defaultValue="${HYBRIS_LOG_DIR}/solr/instances/${instance.name}" />
+
+			<echo>Deleting Solr instance [name=${instance.name}] from:</echo>
+			<echo>${instance.config.dir}</echo>
+			<echo>${instance.data.dir}</echo>
+			<echo>${instance.log.dir}</echo>
+
+			<input message="All config, data and log files will be deleted. Continue (y/n)?" validargs="y,n" addproperty="do.delete" defaultvalue="n" />
+
+			<if>
+				<equals arg1="${do.delete}" arg2="y" />
+				<then>
+					<delete dir="${instance.config.dir}" includeEmptyDirs="true" deleteonexit="true" quiet="true" verbose="true" />
+					<delete dir="${instance.data.dir}" includeEmptyDirs="true" deleteonexit="true" quiet="true" verbose="true" />
+					<delete dir="${instance.log.dir}" includeEmptyDirs="true" deleteonexit="true" quiet="true" verbose="true" />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="startSolrServerAndUploadConfig">
+		<sequential>
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="mode" defaultValue="standalone" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="zk.upconfig" defaultValue="true" />
+
+			<startSolrServer />
+
+			<if>
+				<and>
+					<equals arg1="${instance.mode}" arg2="cloud" />
+					<equals arg1="${instance.zk.upconfig}" arg2="true" />
+				</and>
+				<then>
+					<uploadSolrConfig />
+
+					<echo />
+					<echo>Some cluster-wide properties need to be set before any Solr node starts up (e.g.: urlScheme), due to this we have to restart the Solr server</echo>
+					<echo />
+
+					<stopSolrServer />
+					<startSolrServer />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="startSolrServer">
+		<sequential>
+			<property name="instance.name" value="default" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="hostname" defaultValue="localhost" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="port" defaultValue="8983" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="mode" defaultValue="standalone" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="config.dir" defaultValue="${HYBRIS_CONFIG_DIR}/solr/instances/${instance.name}" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="data.dir" defaultValue="${HYBRIS_DATA_DIR}/solr/instances/${instance.name}" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="log.dir" defaultValue="${HYBRIS_LOG_DIR}/solr/instances/${instance.name}" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="memory" defaultValue="512m" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="javaoptions" defaultValue="" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="zk.host" defaultValue="" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="zk.upconfig" defaultValue="true" />
+
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="authtype" defaultValue="basic" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="user" defaultValue="" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="password" defaultValue="" />
+
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="ssl.enabled" defaultValue="true" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="ssl.keyStoreType" defaultValue="JKS" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="ssl.keyStore" defaultValue="${HYBRIS_CONFIG_DIR}/solr/instances/${instance.name}/solr.jks" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="ssl.keyStorePassword" defaultValue="" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="ssl.trustStoreType" defaultValue="JKS" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="ssl.trustStore" defaultValue="${HYBRIS_CONFIG_DIR}/solr/instances/${instance.name}/solr.jks" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="ssl.trustStorePassword" defaultValue="" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="ssl.needClientAuth" defaultValue="false" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="ssl.wantClientAuth" defaultValue="false" />
+
+			<echo>Starting Solr server for instance [name=${instance.name}, hostname=${instance.hostname}, port=${instance.port}]</echo>
+
+			<if>
+				<equals arg1="${instance.mode}" arg2="cloud" />
+				<then>
+					<if>
+						<equals arg1="${instance.zk.host}" arg2="" />
+						<then>
+							<property name="instance.cmd" value="start -c" />
+						</then>
+						<else>
+							<property name="instance.cmd" value="start -c -z ${instance.zk.host}" />
+						</else>
+					</if>
+				</then>
+				<else>
+					<property name="instance.cmd" value="start" />
+				</else>
+			</if>
+
+			<if>
+				<isset property="instance.javaoptions" />
+				<then>
+					<property name="instance.cmdargs" value="-a &quot;${instance.javaoptions}&quot;" />
+				</then>
+				<else>
+					<property name="instance.cmdargs" value="" />
+				</else>
+			</if>
+
+			<exec executable="bash" failonerror="true" osfamily="unix">
+				<env key="SOLR_SERVER_DIR" value="${ext.solrserver.path}/resources/solr/server" />
+				<env key="SOLR_HOME" value="${instance.config.dir}" />
+				<env key="SOLR_DATA_HOME" value="${instance.data.dir}" />
+				<env key="SOLR_LOGS_DIR" value="${instance.log.dir}" />
+				<env key="LOG4J_PROPS" value="${instance.config.dir}/log4j.properties" />
+				<env key="SOLR_PID_DIR" value="${instance.data.dir}" />
+
+				<env key="SOLR_AUTH_TYPE" value="${instance.authtype}" />
+				<env key="SOLR_AUTHENTICATION_OPTS" value="-Dbasicauth=${instance.user}:${instance.password}" />
+
+				<env key="SOLR_SSL_ENABLED" value="${instance.ssl.enabled}" />
+				<env key="SOLR_SSL_KEY_STORE_TYPE" value="${instance.ssl.keyStoreType}" />
+				<env key="SOLR_SSL_KEY_STORE" value="${instance.ssl.keyStore}" />
+				<env key="SOLR_SSL_KEY_STORE_PASSWORD" value="${instance.ssl.keyStorePassword}" />
+				<env key="SOLR_SSL_TRUST_STORE_TYPE" value="${instance.ssl.trustStoreType}" />
+				<env key="SOLR_SSL_TRUST_STORE" value="${instance.ssl.trustStore}" />
+				<env key="SOLR_SSL_TRUST_STORE_PASSWORD" value="${instance.ssl.trustStorePassword}" />
+				<env key="SOLR_SSL_NEED_CLIENT_AUTH" value="${instance.ssl.needClientAuth}" />
+				<env key="SOLR_SSL_WANT_CLIENT_AUTH" value="${instance.ssl.wantClientAuth}" />
+
+				<arg value="${ext.solrserver.path}/resources/solr/bin/solr" />
+				<arg line="${instance.cmd}" />
+				<arg value="-h" />
+				<arg value="${instance.hostname}" />
+				<arg value="-p" />
+				<arg value="${instance.port}" />
+				<arg value="-m" />
+				<arg value="${instance.memory}" />
+				<arg value="-DzkServerDataDir=${instance.data.dir}/zoo_data" />
+				<arg line="${instance.cmdargs}" />
+			</exec>
+
+			<exec executable="cmd.exe" failonerror="true" osfamily="windows">
+				<env key="SOLR_SERVER_DIR" value="${ext.solrserver.path}/resources/solr/server" />
+				<env key="SOLR_HOME" value="${instance.config.dir}" />
+				<env key="SOLR_DATA_HOME" value="${instance.data.dir}" />
+				<env key="SOLR_LOGS_DIR" value="${instance.log.dir}" />
+				<env key="LOG4J_CONFIG" value="file:${instance.config.dir}/log4j.properties" />
+
+				<env key="SOLR_AUTH_TYPE" value="${instance.authtype}" />
+				<env key="SOLR_AUTHENTICATION_OPTS" value="-Dbasicauth=${instance.user}:${instance.password}" />
+
+				<env key="SSL_ENABLED" value="${instance.ssl.enabled}" />
+				<env key="SSL_KEY_STORE_TYPE" value="${instance.ssl.keyStoreType}" />
+				<env key="SSL_KEY_STORE" value="${instance.ssl.keyStore}" />
+				<env key="SSL_KEY_STORE_PASSWORD" value="${instance.ssl.keyStorePassword}" />
+				<env key="SSL_TRUST_STORE_TYPE" value="${instance.ssl.trustStoreType}" />
+				<env key="SSL_TRUST_STORE" value="${instance.ssl.trustStore}" />
+				<env key="SSL_TRUST_STORE_PASSWORD" value="${instance.ssl.trustStorePassword}" />
+				<env key="SSL_NEED_CLIENT_AUTH" value="${instance.ssl.needClientAuth}" />
+				<env key="SSL_WANT_CLIENT_AUTH" value="${instance.ssl.wantClientAuth}" />
+
+				<arg value="/C" />
+				<arg value="${ext.solrserver.path}/resources/solr/bin/solr.cmd" />
+				<arg line="${instance.cmd}" />
+				<arg value="-h" />
+				<arg value="${instance.hostname}" />
+				<arg value="-p" />
+				<arg value="${instance.port}" />
+				<arg value="-m" />
+				<arg value="${instance.memory}" />
+				<arg value="-DzkServerDataDir=${instance.data.dir}/zoo_data" />
+				<arg line="${instance.cmdargs}" />
+			</exec>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="stopSolrServer">
+		<sequential>
+			<property name="instance.name" value="default" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="hostname" defaultValue="localhost" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="port" defaultValue="8983" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="data.dir" defaultValue="${HYBRIS_DATA_DIR}/solr/instances/${instance.name}" />
+
+			<echo>Stopping Solr server for instance [name=${instance.name}, hostname=${instance.hostname}, port=${instance.port}]</echo>
+
+			<exec executable="bash" failonerror="true" osfamily="unix">
+				<env key="SOLR_PID_DIR" value="${instance.data.dir}" />
+				<arg value="${ext.solrserver.path}/resources/solr/bin/solr" />
+				<arg value="stop" />
+				<arg value="-p" />
+				<arg value="${instance.port}" />
+			</exec>
+
+			<exec executable="cmd.exe" failonerror="true" osfamily="windows">
+				<arg value="/C" />
+				<arg value="${ext.solrserver.path}/resources/solr/bin/solr.cmd" />
+				<arg value="stop" />
+				<arg value="-p" />
+				<arg value="${instance.port}" />
+			</exec>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="uploadSolrConfig">
+		<sequential>
+			<property name="instance.name" value="default" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="port" defaultValue="8983" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="mode" defaultValue="standalone" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="config.dir" defaultValue="${HYBRIS_CONFIG_DIR}/solr/instances/${instance.name}" />
+			<solrinstanceproperty instanceName="${instance.name}" instanceProperty="zk.host" defaultValue="" />
+
+			<if>
+				<equals arg1="${instance.mode}" arg2="cloud" />
+				<then>
+					<if>
+						<equals arg1="${instance.zk.host}" arg2="" />
+						<then>
+							<math result="result" operand1="${instance.port}" operation="+" operand2="1000" datatype="int" />
+							<property name="zkHost" value="localhost:${result}" />
+						</then>
+						<else>
+							<property name="zkHost" value="${instance.zk.host}" />
+						</else>
+					</if>
+
+					<echo>Uploading configuration to ZK host ${zkHost}</echo>
+
+					<for param="filePath">
+						<path>
+							<fileset dir="${instance.config.dir}" casesensitive="yes">
+								<include name="security.json" />
+							</fileset>
+						</path>
+						<sequential>
+							<var name="fileName" unset="true" />
+							<pathconvert property="fileName">
+								<path location="@{filePath}" />
+								<map from="${instance.config.dir}" to="" />
+							</pathconvert>
+
+							<exec executable="bash" failonerror="true" osfamily="unix">
+								<arg line="${ext.solrserver.path}/resources/solr/bin/solr zk cp" />
+								<arg value="file:${instance.config.dir}/${fileName}" />
+								<arg value="zk:${fileName}" />
+								<arg line="-z ${zkHost}" />
+							</exec>
+
+							<exec executable="cmd.exe" failonerror="true" osfamily="windows">
+								<arg value="/C" />
+								<arg line="${ext.solrserver.path}/resources/solr/bin/solr.cmd zk cp" />
+								<arg value="file:/${instance.config.dir}/${fileName}" />
+								<arg value="zk:/${dirName}" />
+								<arg line="-z ${zkHost}" />
+							</exec>
+						</sequential>
+					</for>
+
+					<for param="dirPath">
+						<path>
+							<dirset dir="${instance.config.dir}/configsets">
+								<include name="*" />
+							</dirset>
+						</path>
+						<sequential>
+							<var name="dirName" unset="true" />
+							<basename property="dirName" file="@{dirPath}" />
+
+							<exec executable="bash" failonerror="true" osfamily="unix">
+								<arg line="${ext.solrserver.path}/resources/solr/bin/solr zk upconfig" />
+								<arg value="-d" />
+								<arg value="${instance.config.dir}/configsets/${dirName}/conf" />
+								<arg value="-n" />
+								<arg value="${dirName}" />
+								<arg line="-z ${zkHost}" />
+							</exec>
+
+							<exec executable="cmd.exe" failonerror="true" osfamily="windows">
+								<arg value="/C" />
+								<arg line="${ext.solrserver.path}/resources/solr/bin/solr.cmd zk upconfig" />
+								<arg value="-d" />
+								<arg value="${instance.config.dir}/configsets/${dirName}/conf" />
+								<arg value="-n" />
+								<arg value="${dirName}" />
+								<arg line="-z ${zkHost}" />
+							</exec>
+						</sequential>
+					</for>
+
+					<property name="zkPropertiesPrefix" value="solrserver.instances.${instance.name}.zk.prop" />
+
+					<echo />
+
+					<for param="zkProperty">
+						<propertyset>
+							<propertyref prefix="${zkPropertiesPrefix}" />
+							<mapper type="glob" from="${zkPropertiesPrefix}.*" to="*" />
+						</propertyset>
+						<sequential>
+							<propertycopy name="zkPropertyValue" from="${zkPropertiesPrefix}.@{zkProperty}" />
+							<echo>Setting ZK property: @{zkProperty}=${zkPropertyValue}</echo>
+
+							<exec executable="bash" failonerror="true" osfamily="unix">
+								<arg value="${ext.solrserver.path}/resources/solr/server/scripts/cloud-scripts/zkcli.sh" />
+								<arg line="-cmd clusterprop" />
+								<arg value="-name" />
+								<arg value="@{zkProperty}" />
+								<arg value="-val" />
+								<arg value="${zkPropertyValue}" />
+								<arg line="-z ${zkHost}" />
+							</exec>
+
+							<exec executable="cmd.exe" failonerror="true" osfamily="windows">
+								<arg value="/C" />
+								<arg value="${ext.solrserver.path}/resources/solr/server/scripts/cloud-scripts/zkcli.bat" />
+								<arg line="-cmd clusterprop" />
+								<arg value="-name" />
+								<arg value="@{zkProperty}" />
+								<arg value="-val" />
+								<arg value="${zkPropertyValue}" />
+								<arg line="-z ${zkHost}" />
+							</exec>
+						</sequential>
+					</for>
+				</then>
+				<else>
+					<echo>Uploading configuration failed. You are running solr server in standalone mode.</echo>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="solrinstanceproperty">
+		<attribute name="instanceName" />
+		<attribute name="instanceProperty" />
+		<attribute name="defaultValue" />
+		<sequential>
+			<if>
+				<isset property="solrserver.instances.@{instanceName}.@{instanceProperty}" />
+				<then>
+					<propertycopy name="instance.@{instanceProperty}" from="solrserver.instances.@{instanceName}.@{instanceProperty}" />
+				</then>
+				<else>
+					<property name="instance.@{instanceProperty}" value="@{defaultValue}" />
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="configureSolrServer">
+		<sequential>
+			<property name="solrServerPath" value="${ext.solrserver.path}/resources/solr" />
+
+			<echo>configuring solr server at "${solrServerPath}"</echo>
+
+			<delete dir="${solrServerPath}/docs" />
+			<delete dir="${solrServerPath}/example" />
+			<delete dir="${solrServerPath}/server/solr/configsets" />
+
+			<copy todir="${solrServerPath}">
+				<fileset dir="${ext.solrserver.path}/resources/solrCustomizations/files" includes="**" />
+			</copy>
+		</sequential>
+	</macrodef>
+
+</project>

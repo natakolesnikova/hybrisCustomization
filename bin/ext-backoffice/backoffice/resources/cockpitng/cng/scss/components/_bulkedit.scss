@@ -1,0 +1,46 @@
+@import "../support/_bulkedit-variables.scss";
+
+.bulkedit{
+	&-attr {
+		padding-top: $bulkedit__attribute-row--padding-top;
+		margin: 0;
+		display: table;
+		width: 100%;
+		overflow: hidden;
+
+		&-name {
+			min-width: $bulkedit__attribute-name--min-width;
+		    padding-right: $bulkedit__attribute-name--padding-right;
+		    display: table-cell;
+		    vertical-align: top;
+		    padding-top: $bulkedit__attribute-name--padding-top;
+		}
+		&-value {
+			display: table-cell;
+			position: relative;
+			width: 100%;
+			
+			.ye-validation-panel,
+			.yw-loceditor-fixed-closed .yw-loceditor-caption,
+			.yw-loceditor-fixed-open .yw-loceditor-caption{
+				margin-top: $bulkedit__attribute-icon-panel--margin-top;
+				position: absolute;
+				right: 0;
+			}
+			> .z-div:last-child {
+				padding-bottom: $bulkedit__attribute-value-container--padding-bottom;
+			}
+		}
+		&-clear-switch {
+			min-width: $bulkedit__attribute-clear--width;
+			padding-left:  $bulkedit__attribute-clear--padding-left;
+			display: table-cell;
+			vertical-align: top;
+
+			.ye-switch-checkbox.z-checkbox input:checked + label:before {
+				background: $bulkedit__attribute-clear-switch-checked--bg-color;
+				border-color: $bulkedit__attribute-clear-switch-checked--border-color;
+			}
+		}
+	}
+}

@@ -1,0 +1,45 @@
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2000-2016 hybris AG
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of hybris
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with hybris.
+ */
+.yw-de_hybris_platform_adaptivesearch_widgets_searchProfileContext {
+  width: 100%;
+  line-height: 25px;
+  position: relative;
+
+  .yas-label {
+    vertical-align: middle;
+    font-size: $font-size__medium;
+    font-weight: bold;
+    color: $blue__default--600;
+  }
+
+  .yas-search-profile-label {
+    vertical-align: middle;
+    font-size: $font-size__medium;
+    margin-right: 6px;
+  }
+
+  .yas-search-configuration-label {
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 6px;
+    font-size: $font-size__medium;
+  }
+
+  .yas-info {
+    vertical-align: middle;
+    font-size: 17px;
+    color: $grey__default--1100;
+  }
+}

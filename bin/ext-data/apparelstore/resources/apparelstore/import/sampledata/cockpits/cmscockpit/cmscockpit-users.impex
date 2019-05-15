@@ -1,0 +1,42 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import Sample CMS Cockpit User
+#
+
+$defaultPassword=1234
+
+# Impexing previewmanagergroup as previewwebservices might not be impexed by the time this file is executed and the user impex uploads might fail
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
+;previewmanagergroup;employeegroup
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
+;cmsmanagergroup;cockpitgroup,employeegroup
+;apparel-de-cmsmanagergroup;employeegroup
+;apparel-uk-cmsmanagergroup;employeegroup
+;apparel-cmsreadergroup;employeegroup
+
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;apparel-de-cmsmanagergroup;basecmsmanagergroup;
+;apparel-uk-cmsmanagergroup;basecmsmanagergroup;
+;apparel-cmsreadergroup;basecmsmanagergroup;
+
+INSERT_UPDATE Employee;UID[unique=true];password[default=$defaultPassword];description;name;groups(uid)[mode=append];sessionLanguage(isocode);sessionCurrency(isocode)
+;cmsmanager;;CMS manager;CMS Manager;cmsmanagergroup;en;USD
+;cmsmanager-apparel-de;;CMS manager Apparel DE;CMS Manager Apparel DE;apparel-de-cmsmanagergroup,previewmanagergroup,cockpitgroup;en;USD
+;cmsmanager-apparel-uk;;CMS manager Apparel UK;CMS Manager Apparel UK;apparel-uk-cmsmanagergroup,previewmanagergroup,cockpitgroup;en;USD
+;cmsreader-apparel;;CMS Reader Apparel;CMS Reader Apparel;apparel-cmsreadergroup,previewmanagergroup,cockpitgroup;en;USD
+
+UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];writePrincipals(uid)[mode=append];readPrincipals(uid)[mode=append];
+;apparel-ukContentCatalog;Staged;cmsmanagergroup,apparel-uk-cmsmanagergroup;apparel-cmsreadergroup
+;apparel-deContentCatalog;Staged;cmsmanagergroup,apparel-de-cmsmanagergroup;apparel-cmsreadergroup
+;apparel-ukContentCatalog;Online;;cmsmanagergroup,apparel-uk-cmsmanagergroup,apparel-cmsreadergroup
+;apparel-deContentCatalog;Online;;cmsmanagergroup,apparel-de-cmsmanagergroup,apparel-cmsreadergroup

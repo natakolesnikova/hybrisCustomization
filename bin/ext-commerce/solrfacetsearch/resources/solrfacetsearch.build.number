@@ -1,0 +1,11 @@
+#Ant properties
+#Mon Mar 12 15:12:26 UTC 2018
+builddate=20180312 1512
+description=solrfacetsearch
+group.id=de.hybris.platform
+module.name=platform-module
+name=solrfacetsearch
+releasedate=20180308 1939
+vendor=hybris
+version=6.7.0.0
+version.api=6.7.0

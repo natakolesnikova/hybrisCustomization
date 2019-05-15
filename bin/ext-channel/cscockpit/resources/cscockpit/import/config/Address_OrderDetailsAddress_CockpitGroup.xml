@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<list-view unassigned-group-name="Other">
+	<group name="General">
+		<group name="line">
+			<property qualifier="Address.firstname" visible="true"/>
+			<property qualifier="Address.lastname" visible="true"/>
+		</group>
+		<group name="line">
+			<property qualifier="Address.line1" visible="true"/>
+		</group>
+		<group name="line">
+			<property qualifier="Address.line2" visible="true"/>
+		</group>
+		<group name="line">
+			<property qualifier="Address.town" visible="true"/>
+		</group>
+		<group name="line">
+			<property qualifier="Address.postalcode" visible="true"/>
+		</group>
+		<group name="line">
+			<property qualifier="Address.country" visible="true"/>
+		</group>
+	</group>
+</list-view>

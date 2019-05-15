@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://$MODULE_DIR$/resources" />
+    <libelement value="jar://$MODULE_DIR$/lib/canvas-1.0-y.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/displaytag-1.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/fckez-2.6.1_2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/itext-2.1.7.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jai_core-1.1.3.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jai-codec-1.1.3.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jasperreports-4.0.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jasperreports-fonts-4.0.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jcommon-1.0.16.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jfreechart-1.0.13.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jgraph-5.8.3.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jgrapht-jdk1.6-0.8.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jgraphx-1.10.2.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/TGGraphLayout-jre11-1.22.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zcommon-3.6.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zcommons-el-1.0.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zhtml-3.6.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zk-3.6.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zkex-3.6.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zkmax-3.6.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zkplus-3.6.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zkspring-1.1.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zml-3.6.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zul-3.6.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/zweb-3.6.4.jar!/" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/gensrc" expected_position="1" />
+      <src_folder value="file://$MODULE_DIR$/testsrc" expected_position="2" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/eclipsebin/notused" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/gensrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/testsrc" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/classes" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library name="resources">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module" module-name="platform" />
+    <orderEntry type="module-library" exported="">
+      <library name="canvas-1.0-y.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/canvas-1.0-y.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="displaytag-1.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/displaytag-1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="fckez-2.6.1_2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/fckez-2.6.1_2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="itext-2.1.7.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/itext-2.1.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jai_core-1.1.3.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jai_core-1.1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jai-codec-1.1.3.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jai-codec-1.1.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="jasperreports-4.0.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-4.0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jasperreports-fonts-4.0.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-fonts-4.0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jcommon-1.0.16.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jcommon-1.0.16.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jfreechart-1.0.13.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jfreechart-1.0.13.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jgraph-5.8.3.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jgraph-5.8.3.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jgrapht-jdk1.6-0.8.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jgrapht-jdk1.6-0.8.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jgraphx-1.10.2.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jgraphx-1.10.2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="TGGraphLayout-jre11-1.22.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/TGGraphLayout-jre11-1.22.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="zcommon-3.6.4.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/zcommon-3.6.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/doc/zcommon-3.6.4-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="zcommons-el-1.0.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/zcommons-el-1.0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="zhtml-3.6.4.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/zhtml-3.6.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="zkex-3.6.4.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/zkex-3.6.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="zkmax-3.6.4.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/zkmax-3.6.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="zkplus-3.6.4.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/zkplus-3.6.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="zkspring-1.1.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/zkspring-1.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="zml-3.6.4.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/zml-3.6.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="zk-3.6.4.3" level="project" />
+    <orderEntry type="library" exported="" name="zweb-3.6.4.1" level="project" />
+    <orderEntry type="library" name="zul-3.6.4.2" level="project" />
+  </component>
+</module>

@@ -1,0 +1,17 @@
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+.yw-modal-collectionEditorAreaGroup {
+    .yw-listview-actioncontainer {
+        padding-top: $collection-editor-area-modal__listview-actioncontainer--padding-top;
+    }
+
+    .yw-com_hybris_cockpitng_backoffice_collectionEditorArea  {
+        border-top: 1px solid $collection-editor-area-modal__collectionEditorArea--border-color;
+    }
+
+    .yw-collection-preview-east {
+        border-left: 1px solid $collection-editor-area-modal__collection-preview-east--border-color;
+    }
+
+}

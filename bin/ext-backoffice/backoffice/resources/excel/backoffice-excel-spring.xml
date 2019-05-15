@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="backoffice-excel-translators-spring.xml"/>
+	<import resource="backoffice-excel-validators-spring.xml"/>
+
+	<alias name="defaultExcelExportService" alias="excelExportService"/>
+	<bean id="defaultExcelExportService" class="com.hybris.backoffice.excel.exporting.DefaultExcelExportService">
+		<property name="excelExportDivider" ref="excelExportDivider"/>
+		<property name="templatePath" value="/excel/excelImpExMasterTemplate.xlsx"/>
+		<property name="excelTranslatorRegistry" ref="excelTranslatorRegistry"/>
+		<property name="excelTemplateService" ref="excelTemplateService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="typeService" ref="typeService"/>
+		<property name="permissionCRUDService" ref="permissionCRUDService"/>
+		<property name="modelService" ref="modelService" />
+	</bean>
+
+	<alias name="defaultExcelImportService" alias="excelImportService"/>
+	<bean id="defaultExcelImportService" class="com.hybris.backoffice.excel.importing.DefaultExcelImportService">
+		<property name="excelTemplateService" ref="excelTemplateService"/>
+		<property name="excelTranslatorRegistry" ref="excelTranslatorRegistry"/>
+		<property name="workbookValidators" ref="excelWorkbookValidators"/>
+	</bean>
+
+	<alias name="defaultExcelTemplateService" alias="excelTemplateService"/>
+	<bean id="defaultExcelTemplateService" class="com.hybris.backoffice.excel.template.DefaultExcelTemplateService">
+		<property name="typeService" ref="typeService"/>
+		<property name="excelTranslatorRegistry" ref="excelTranslatorRegistry"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="permissionCRUDService" ref="permissionCRUDService"/>
+		<property name="excelDateUtils" ref="excelDateUtils" />
+		<property name="excelSheetNamingStrategy" ref="excelSheetNamingStrategy" />
+	</bean>
+
+	<alias name="defaultExcelSheetNamingStrategy" alias="excelSheetNamingStrategy" />
+	<bean id="defaultExcelSheetNamingStrategy" class="com.hybris.backoffice.excel.template.DefaultExcelSheetNamingStrategy" />
+
+	<alias name="defaultExcelExportDivider" alias="excelExportDivider"/>
+	<bean id="defaultExcelExportDivider" class="com.hybris.backoffice.excel.exporting.DefaultExcelExportDivider">
+		<property name="typeService" ref="typeService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="permissionCRUDService" ref="permissionCRUDService"/>
+	</bean>
+
+	<alias name="defaultExcelImpexConverter" alias="excelImpexConverter"/>
+	<bean id="defaultExcelImpexConverter" class="com.hybris.backoffice.excel.importing.DefaultImpexConverter"/>
+
+	<alias name="defaultExcelCronJobService" alias="excelCronJobService"/>
+	<bean id="defaultExcelCronJobService" class="com.hybris.backoffice.excel.jobs.DefaultExcelCronJobService">
+		<property name="modelService" ref="modelService"/>
+		<property name="mediaService" ref="mediaService"/>
+		<property name="mediaFolder" value="backofficeexcelimport"/>
+		<property name="cronJobPerformableSpringId" value="excelImportJobPerformable"/>
+	</bean>
+
+	<alias name="defaultExcelImportJobPerformable" alias="excelImportJobPerformable"/>
+	<bean id="defaultExcelImportJobPerformable" class="com.hybris.backoffice.excel.jobs.ExcelImportJobPerformable"
+		  parent="abstractJobPerformable">
+		<property name="mediaService" ref="mediaService"/>
+		<property name="importService" ref="importService"/>
+		<property name="impexConverter" ref="excelImpexConverter"/>
+		<property name="excelImportService" ref="excelImportService"/>
+		<property name="excelTemplateService" ref="excelTemplateService"/>
+	</bean>
+
+	<alias name="defaultExcelDateUtils" alias="excelDateUtils"/>
+	<bean name="defaultExcelDateUtils" class="com.hybris.backoffice.excel.util.DefaultExcelDateUtils"/>
+</beans>

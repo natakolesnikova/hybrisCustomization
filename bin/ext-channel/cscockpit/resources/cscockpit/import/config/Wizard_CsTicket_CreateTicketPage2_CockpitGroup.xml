@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<wizard-config>
+	<displayed-properties>
+		<property qualifier="CsTicket.category">
+			<parameter name="defaultValue" value="CsTicketCategory.INCIDENT" />
+			<parameter name="defaultValueResolver" value="defaultEnumValueResolver" />
+		</property>
+		<property qualifier="CsTicket.priority">
+			<parameter name="defaultValue" value="CsTicketPriority.MEDIUM" />
+			<parameter name="defaultValueResolver" value="defaultEnumValueResolver" />
+		</property>
+		<property qualifier="CsCustomerEvent.reason">
+			<parameter name="defaultValue" value="CsEventReason.UPDATE" />
+			<parameter name="defaultValueResolver" value="defaultEnumValueResolver" />
+		</property>
+	</displayed-properties>
+</wizard-config>

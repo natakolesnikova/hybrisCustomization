@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- Page Restriction Validators -->
+	
+	<alias name="defaultUpdatePageRestrictionValidator" alias="updatePageRestrictionValidator" />
+	<bean id="defaultUpdatePageRestrictionValidator" class="de.hybris.platform.cmsfacades.pagesrestrictions.validator.UpdatePageRestrictionValidator">
+		<description>deprecated since 6.6</description>
+		<property name="restrictionExistsPredicate" ref="restrictionExistsPredicate" />
+		<property name="pageExistsPredicate" ref="pageExistsPredicate" />
+	</bean>
+	
+	
+	<!-- Restriction Validator Factory -->
+	
+	<alias name="defaultCreateRestrictionValidatorFactory" alias="cmsCreateRestrictionValidatorFactory" />
+	<bean id="defaultCreateRestrictionValidatorFactory" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<description>deprecated since 6.6</description>
+		<property name="targetMapClass">
+			<value>java.util.HashMap</value>
+		</property>
+		<property name="sourceMap">
+			<map merge="true">
+				<entry value-ref="cmsTimeRestrictionCompositeValidator">
+					<key>
+						<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.TimeRestrictionData</value>
+					</key>
+				</entry>
+				<entry value-ref="cmsCategoryRestrictionCompositeValidator">
+					<key>
+						<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.CategoryRestrictionData</value>
+					</key>
+				</entry>
+				<entry value-ref="cmsUserGroupRestrictionCompositeValidator">
+					<key>
+						<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.UserGroupRestrictionData</value>
+					</key>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<alias name="defaultUpdateRestrictionValidatorFactory" alias="cmsUpdateRestrictionValidatorFactory" />
+	<bean id="defaultUpdateRestrictionValidatorFactory" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<description>deprecated since 6.6</description>
+		<property name="targetMapClass">
+			<value>java.util.HashMap</value>
+		</property>
+		<property name="sourceMap">
+			<map merge="true">
+				<entry value-ref="cmsUpdateTimeRestrictionCompositeValidator">
+					<key>
+						<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.TimeRestrictionData</value>
+					</key>
+				</entry>
+				<entry value-ref="cmsUpdateCategoryRestrictionCompositeValidator">
+					<key>
+						<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.CategoryRestrictionData</value>
+					</key>
+				</entry>
+				<entry value-ref="cmsUpdateUserGroupRestrictionCompositeValidator">
+					<key>
+						<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.UserGroupRestrictionData</value>
+					</key>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Composite Validators -->
+	
+	<alias name="defaultTimeRestrictionCompositeValidator" alias="cmsTimeRestrictionCompositeValidator" />
+	<bean id="defaultTimeRestrictionCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="createRestrictionValidator" />
+				<ref bean="createTimeRestrictionValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCategoryRestrictionCompositeValidator" alias="cmsCategoryRestrictionCompositeValidator" />
+	<bean id="defaultCategoryRestrictionCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="createRestrictionValidator" />
+				<ref bean="createCategoryRestrictionValidator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultUserGroupRestrictionCompositeValidator" alias="cmsUserGroupRestrictionCompositeValidator" />
+	<bean id="defaultUserGroupRestrictionCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="createRestrictionValidator" />
+				<ref bean="createUserGroupRestrictionValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultUpdateTimeRestrictionCompositeValidator" alias="cmsUpdateTimeRestrictionCompositeValidator" />
+	<bean id="defaultUpdateTimeRestrictionCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="updateTimeRestrictionValidator" />
+				<ref bean="updateRestrictionValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultUpdateCategoryRestrictionCompositeValidator" alias="cmsUpdateCategoryRestrictionCompositeValidator" />
+	<bean id="defaultUpdateCategoryRestrictionCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="updateCategoryRestrictionValidator" />
+				<ref bean="updateRestrictionValidator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultUpdateUserGroupRestrictionCompositeValidator" alias="cmsUpdateUserGroupRestrictionCompositeValidator" />
+	<bean id="defaultUpdateUserGroupRestrictionCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="updateUserGroupRestrictionValidator" />
+				<ref bean="updateRestrictionValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Validators -->
+	
+	<bean id="createRestrictionValidator" class="de.hybris.platform.cmsfacades.restrictions.validator.CreateRestrictionValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validStringLengthPredicate" ref="validStringLengthPredicate" />
+		<property name="restrictionNameExistsPredicate" ref="restrictionNameExistsPredicate" />
+	</bean>
+	
+	<bean id="createTimeRestrictionValidator" class="de.hybris.platform.cmsfacades.restrictions.validator.CreateTimeRestrictionValidator">
+		<description>deprecated since 6.6</description>
+	</bean>
+
+	<bean id="createCategoryRestrictionValidator" class="de.hybris.platform.cmsfacades.restrictions.validator.CreateCategoryRestrictionValidator">
+		<description>deprecated since 6.6</description>
+		<property name="categoryExistsPredicate" ref="categoryExistsPredicate" />
+	</bean>
+
+	<bean id="createUserGroupRestrictionValidator" class="de.hybris.platform.cmsfacades.restrictions.validator.CreateUserGroupRestrictionValidator">
+		<description>deprecated since 6.6</description>
+		<property name="itemModelExistsPredicate" ref="cmsItemModelExistsPredicate" />
+	</bean>
+	
+	<bean id="updateRestrictionValidator" class="de.hybris.platform.cmsfacades.restrictions.validator.UpdateRestrictionValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validStringLengthPredicate" ref="validStringLengthPredicate" />
+		<property name="restrictionNameExistsPredicate" ref="restrictionNameExistsPredicate" />
+		<property name="hasRestrictionNameChangedPredicate" ref="hasRestrictionNameChangedUpdatePredicate" />
+		<property name="restrictionExistsPredicate" ref="restrictionExistsPredicate" />
+	</bean>
+	
+	<bean id="updateCategoryRestrictionValidator" class="de.hybris.platform.cmsfacades.restrictions.validator.UpdateCategoryRestrictionValidator">
+		<description>deprecated since 6.6</description>
+		<property name="categoryExistsPredicate" ref="categoryExistsPredicate" />
+	</bean>	
+	
+	<bean id="updateTimeRestrictionValidator" class="de.hybris.platform.cmsfacades.restrictions.validator.UpdateTimeRestrictionValidator">
+		<description>deprecated since 6.6</description>
+	</bean>
+
+	<bean id="updateUserGroupRestrictionValidator" class="de.hybris.platform.cmsfacades.restrictions.validator.UpdateUserGroupRestrictionValidator">
+		<description>deprecated since 6.6</description>
+		<property name="itemModelExistsPredicate" ref="cmsItemModelExistsPredicate" />
+	</bean>
+</beans>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+
+	<alias name="defaultRestrictionFacade" alias="restrictionFacade" />
+	<bean id="defaultRestrictionFacade" class="de.hybris.platform.cmsfacades.restrictions.impl.DefaultRestrictionFacade">
+		<description>deprecated since 6.6</description>
+		<property name="cmsAdminRestrictionService" ref="cmsAdminRestrictionService" />
+		<property name="facadeValidationService" ref="facadeValidationService" />
+		<property name="modelService" ref="modelService" />
+		<property name="restrictionDataToModelConverterRegistry" ref="cmsRestrictionDataToModelConverterRegistry" />
+		<property name="restrictionModelToDataConverterRegistry" ref="cmsRestrictionModelToDataConverterRegistry" />
+		<property name="restrictionTypeModelConverter" ref="restrictionTypeModelConverter" />
+		<property name="restrictionComparator" ref="restrictionComparator" />
+		<property name="cmsRestrictionModelUidGenerator" ref="cmsRestrictionModelUidGenerator" />
+		<property name="cmsCreateRestrictionValidatorFactory" ref="cmsCreateRestrictionValidatorFactory" />
+		<property name="cmsUpdateRestrictionValidatorFactory" ref="cmsUpdateRestrictionValidatorFactory" />
+		<property name="namedQueryService" ref="flexibleSearchNamedQueryService" />
+		<property name="namedQueryDataValidator" ref="namedQueryDataValidator" />
+		<property name="restrictionNamedQueryConverter" ref="restrictionNamedQueryConverter" />
+		<property name="cmsSearchResultConverter" ref="cmsSearchResultConverter" />
+		<property name="sessionSearchRestrictionsDisabler" ref="cmsSessionSearchRestrictionsDisabler" />
+	</bean>
+
+	<!-- Restriction uid generator -->
+	<bean id="cmsRestrictionModelUidGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator" init-method="init">
+		<description>deprecated since 6.6</description>
+		<property name="key" value="${keygen.restriction.uid.key}" />
+		<property name="digits" value="${keygen.restriction.uid.digits}" />
+		<property name="start" value="${keygen.restriction.uid.start}" />
+		<property name="type" value="${keygen.restriction.uid.type}" />
+	</bean>
+
+	<!-- PageRestriction Facade-->
+	
+	<alias name="defaultPageRestrictionFacade" alias="pageRestrictionFacade" />
+	<bean id="defaultPageRestrictionFacade" class="de.hybris.platform.cmsfacades.pagesrestrictions.impl.DefaultPageRestrictionFacade">
+		<property name="adminPageService" ref="cmsAdminPageService" />
+		<property name="adminRestrictionService" ref="cmsAdminRestrictionService" />
+		<property name="facadeValidationService" ref="facadeValidationService" />
+		<property name="updatePageRestrictionValidator" ref="updatePageRestrictionValidator" />
+		<property name="transactionManager" ref="txManager" />
+		<property name="validatorErrorFactory" ref="validatorErrorFactory" />
+	</bean>
+	
+	<alias name="defaultPageTypeRestrictionTypeFacade" alias="pageTypeRestrictionTypeFacade" />
+	<bean id="defaultPageTypeRestrictionTypeFacade" class="de.hybris.platform.cmsfacades.pagetypesrestrictiontypes.impl.DefaultPageTypeRestrictionTypeFacade">
+		<property name="adminPageService" ref="cmsAdminPageService" />
+	</bean>
+	
+	<alias name="defaultRestrictionComparator" alias="restrictionComparator" />
+	<bean id="defaultRestrictionComparator" class="de.hybris.platform.cmsfacades.restrictions.impl.DefaultRestrictionComparator">
+		<description>deprecated since 6.6</description>
+	</bean>
+
+
+	<!-- Restriction populators and converters -->
+	
+	<!-- Convert restriction model to data -->
+	<alias name="defaultRestrictionModelToDataConverterRegistry" alias="cmsRestrictionModelToDataConverterRegistry" />
+	<bean id="defaultRestrictionModelToDataConverterRegistry" 
+			class="de.hybris.platform.cmsfacades.restrictions.service.impl.DefaultRestrictionModelToDataConverterRegistry">
+		<description>deprecated since 6.6</description>
+	</bean>
+			
+	<bean class="de.hybris.platform.cmsfacades.restrictions.service.impl.DefaultRestrictionModelToDataConverter"
+			p:typecode="AbstractRestriction" p:converter-ref="restrictionModelConverter">
+		<description>deprecated since 6.6</description>
+	</bean>
+	<bean class="de.hybris.platform.cmsfacades.restrictions.service.impl.DefaultRestrictionModelToDataConverter"
+			p:typecode="CMSTimeRestriction" p:converter-ref="timeRestrictionModelConverter">
+		<description>deprecated since 6.6</description>
+	</bean>
+	<bean class="de.hybris.platform.cmsfacades.restrictions.service.impl.DefaultRestrictionModelToDataConverter"
+			p:typecode="CMSCategoryRestriction" p:converter-ref="categoryRestrictionModelConverter">
+		<description>deprecated since 6.6</description>
+	</bean>
+	<bean class="de.hybris.platform.cmsfacades.restrictions.service.impl.DefaultRestrictionModelToDataConverter"
+		  p:typecode="CMSUserGroupRestriction" p:converter-ref="userGroupRestrictionModelConverter">
+		<description>deprecated since 6.6</description>
+	</bean>
+
+
+	<alias name="defaultRestrictionModelConverter" alias="restrictionModelConverter" />
+	<bean id="defaultRestrictionModelConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.AbstractRestrictionData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="basicRestrictionModelPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultTimeRestrictionModelToDataConverter" alias="timeRestrictionModelConverter" />
+	<bean id="defaultTimeRestrictionModelToDataConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.TimeRestrictionData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="basicRestrictionModelPopulator" />
+				<ref bean="timeRestrictionModelToDataPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCategoryRestrictionModelToDataConverter" alias="categoryRestrictionModelConverter" />
+	<bean id="defaultCategoryRestrictionModelToDataConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.CategoryRestrictionData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="basicRestrictionModelPopulator" />
+				<ref bean="categoryRestrictionModelToDataPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultUserGroupRestrictionModelToDataConverter" alias="userGroupRestrictionModelConverter" />
+	<bean id="defaultUserGroupRestrictionModelToDataConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.UserGroupRestrictionData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="basicRestrictionModelPopulator" />
+				<ref bean="userGroupRestrictionModelToDataPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="basicRestrictionModelPopulator" class="de.hybris.platform.cmsfacades.restrictions.populator.model.BasicRestrictionModelPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+	</bean>
+	<bean id="timeRestrictionModelToDataPopulator" class="de.hybris.platform.cmsfacades.restrictions.populator.model.TimeRestrictionModelToDataPopulator">
+		<description>deprecated since 6.6</description>
+	</bean>
+	<bean id="categoryRestrictionModelToDataPopulator" class="de.hybris.platform.cmsfacades.restrictions.populator.model.CategoryRestrictionModelToDataPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+	</bean>
+	<bean id="userGroupRestrictionModelToDataPopulator" class="de.hybris.platform.cmsfacades.restrictions.populator.model.UserGroupRestrictionModelToDataPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+	</bean>
+	
+	<!-- POST : Convert restriction data to model -->
+	<alias name="defaultRestrictionDataToModelConverterRegistry" alias="cmsRestrictionDataToModelConverterRegistry" />
+	<bean id="defaultRestrictionDataToModelConverterRegistry" 
+			class="de.hybris.platform.cmsfacades.restrictions.service.impl.DefaultRestrictionDataToModelConverterRegistry">
+		<description>deprecated since 6.6</description>
+	</bean>
+			
+	<bean class="de.hybris.platform.cmsfacades.restrictions.service.impl.DefaultRestrictionDataToModelConverter"
+			p:typecode="TimeRestrictionData" p:converter-ref="timeRestrictionDataToModelConverter">
+		<description>deprecated since 6.6</description>
+	</bean>
+			
+	<bean class="de.hybris.platform.cmsfacades.restrictions.service.impl.DefaultRestrictionDataToModelConverter"
+		p:typecode="CategoryRestrictionData" p:converter-ref="categoryRestrictionDataToModelConverter">
+		<description>deprecated since 6.6</description>
+	</bean>
+
+	<bean class="de.hybris.platform.cmsfacades.restrictions.service.impl.DefaultRestrictionDataToModelConverter"
+		  p:typecode="UserGroupRestrictionData" p:converter-ref="userGroupRestrictionDataToModelConverter">
+		<description>deprecated since 6.6</description>
+	</bean>
+
+	<alias name="defaultTimeRestrictionDataToModelConverter" alias="timeRestrictionDataToModelConverter" />
+	<bean id="defaultTimeRestrictionDataToModelConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cms2.model.restrictions.CMSTimeRestrictionModel" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="basicRestrictionDataToModelPopulator" />
+				<ref bean="timeRestrictionDataToModelPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCategoryRestrictionDataToModelConverter" alias="categoryRestrictionDataToModelConverter" />
+	<bean id="defaultCategoryRestrictionDataToModelConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cms2.model.restrictions.CMSCategoryRestrictionModel" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="basicRestrictionDataToModelPopulator" />
+				<ref bean="categoryRestrictionDataToModelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultUserGroupRestrictionDataToModelConverter" alias="userGroupRestrictionDataToModelConverter" />
+	<bean id="defaultUserGroupRestrictionDataToModelConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cms2.model.restrictions.CMSUserGroupRestrictionModel" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="basicRestrictionDataToModelPopulator" />
+				<ref bean="userGroupRestrictionDataToModelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	
+	<bean id="basicRestrictionDataToModelPopulator" class="de.hybris.platform.cmsfacades.restrictions.populator.data.BasicRestrictionDataToModelPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+	</bean>
+	
+	<bean id="timeRestrictionDataToModelPopulator" class="de.hybris.platform.cmsfacades.restrictions.populator.data.TimeRestrictionDataToModelPopulator">
+		<description>deprecated since 6.6</description>
+	</bean>
+	
+	<bean id="categoryRestrictionDataToModelPopulator" class="de.hybris.platform.cmsfacades.restrictions.populator.data.CategoryRestrictionDataToModelPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="productCatalogItemModelFinder" ref="cmsProductCatalogItemModelFinder"/>
+	</bean>
+
+	<bean id="userGroupRestrictionDataToModelPopulator" class="de.hybris.platform.cmsfacades.restrictions.populator.data.UserGroupRestrictionDataToModelPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+	</bean>
+	
+	<!-- Restriction Type populators and converters -->
+	
+	<alias name="defaultRestrictionTypeModelConverter" alias="restrictionTypeModelConverter" />
+	<bean id="defaultRestrictionTypeModelConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.RestrictionTypeData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="composedTypeModelPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- NamedQuery Converter -->
+	
+	<alias name="defaultRestrictionNamedQueryConverter" alias="restrictionNamedQueryConverter" />
+	<bean id="defaultRestrictionNamedQueryConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cms2.namedquery.NamedQuery" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="basicNamedQueryDataPopulator" />
+				<ref bean="restrictionSearchByCodeNamedQueryDataPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="restrictionSearchByCodeNamedQueryDataPopulator" parent="cmsAbstractNamedQueryDataPopulator" 
+			class="de.hybris.platform.cmsfacades.restrictions.populator.data.RestrictionSearchByNamedQueryDataPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="typeService" ref="typeService" />
+	</bean>
+	
+</beans>

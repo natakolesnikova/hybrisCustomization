@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<wizard-config>
+	<displayed-properties>
+		<property qualifier="CsCustomerEvent.reason">
+			<parameter name="defaultValue" value="CsEventReason.UPDATE" />
+			<parameter name="defaultValueResolver" value="defaultEnumValueResolver" />
+		</property>
+		<property qualifier="CsCustomerEvent.subject" />
+		<property qualifier="AbstractComment.text">
+			<parameter name="rows" value="4"/>
+			<parameter name="label_en" value="Email Body"/>
+			<parameter name="label_de" value="Email Text"/>
+		</property>
+
+		<property qualifier="CsCustomerEvent.interventionType" visible="false">
+			<parameter name="defaultValue" value="CsInterventionType.EMAIL" />
+			<parameter name="defaultValueResolver" value="defaultEnumValueResolver" />
+		</property>
+		
+	</displayed-properties>
+</wizard-config>

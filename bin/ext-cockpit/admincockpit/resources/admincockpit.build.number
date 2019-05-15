@@ -1,0 +1,11 @@
+#Ant properties
+#Mon Mar 12 10:53:35 UTC 2018
+builddate=20180312 1053
+description=admincockpit
+group.id=de.hybris.platform
+module.name=platform-module
+name=admincockpit
+releasedate=20180307 1940
+vendor=hybris
+version=6.7.0.0
+version.api=6.7.0

@@ -1,0 +1,11 @@
+#Ant properties
+#Fri Mar 16 16:42:16 UTC 2018
+builddate=20180316 1642
+description=electronicsstore
+group.id=de.hybris.platform
+module.name=platform-module
+name=electronicsstore
+releasedate=20180313 1011
+vendor=hybris
+version=6.7.0.0
+version.api=6.7.0

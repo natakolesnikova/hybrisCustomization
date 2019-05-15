@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd 
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Component Validators -->
+	
+	<bean depends-on="cmsComponentValidatorFactory" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.NavigationComponentData</value>
+		</property>
+		<property name="value" ref="navigationComponentCompositeValidator" />
+	</bean>
+	
+	<bean depends-on="cmsComponentValidatorFactory" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.ProductCarouselComponentData</value>
+		</property>
+		<property name="value" ref="productCarouselComponentCompositeValidator" />
+	</bean>
+	
+	<bean depends-on="cmsComponentValidatorFactory" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.SimpleBannerComponentData</value>
+		</property>
+		<property name="value" ref="cmsSimpleBannerCompositeValidator" />
+	</bean>
+	
+	<bean depends-on="cmsComponentValidatorFactory" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.SimpleResponsiveBannerComponentData</value>
+		</property>
+		<property name="value" ref="simpleResponsiveCompositeValidator" />
+	</bean>
+	
+	<alias name="defaultNavigationComponentCompositeValidator" alias="navigationComponentCompositeValidator" />
+	<bean id="defaultNavigationComponentCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<property name="validators">
+			<list merge="true">
+				<ref bean="baseComponentValidator" />
+				<ref bean="navigationComponentValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultProductCarouselComponentCompositeValidator" alias="productCarouselComponentCompositeValidator" />
+	<bean id="defaultProductCarouselComponentCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<property name="validators">
+			<list merge="true">
+				<ref bean="baseComponentValidator" />
+				<ref bean="productCarouselComponentValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSimpleBannerCompositeValidator" alias="cmsSimpleBannerCompositeValidator" />
+	<bean id="defaultSimpleBannerCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+
+		<property name="validators">
+			<list merge="true">
+				<ref bean="baseComponentValidator" />
+				<ref bean="simpleBannerComponentValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultSimpleResponsiveCompositeValidator" alias="simpleResponsiveCompositeValidator" />
+	<bean id="defaultSimpleResponsiveCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<property name="validators">
+			<list merge="true">
+				<ref bean="baseComponentValidator" />
+				<ref bean="simpleResponsiveBannerValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultNavigationComponentValidator" alias="navigationComponentValidator" />
+	<bean id="defaultNavigationComponentValidator" class="de.hybris.platform.acceleratorfacades.component.validator.NavigationComponentValidator">
+		<property name="validPositiveIntegerPredicate" ref="validPositiveIntegerPredicate" />
+	</bean>
+	
+	<alias name="defaultProductCarouselComponentValidator" alias="productCarouselComponentValidator" />
+	<bean id="defaultProductCarouselComponentValidator" class="de.hybris.platform.acceleratorfacades.component.validator.ProductCarouselComponentValidator">
+	</bean>
+	
+	<alias name="defaultSimpleBannerComponentValidator" alias="simpleBannerComponentValidator" />
+	<bean id="defaultSimpleBannerComponentValidator" class="de.hybris.platform.acceleratorfacades.component.validator.SimpleBannerComponentValidator">
+		<property name="localizedValidator" ref="localizedValidator" />
+		<property name="localizedStringValidator" ref="cmsLocalizedStringValidator" />
+		<property name="localizedMediaValidator" ref="cmsLocalizedMediaValidator" />
+		<property name="validStringLengthPredicate" ref="validStringLengthPredicate" />
+	</bean>
+	
+	<alias name="defaultSimpleResponsiveBannerComponentValidator" alias="simpleResponsiveBannerValidator" />
+	<bean id="defaultSimpleResponsiveBannerComponentValidator" class="de.hybris.platform.acceleratorfacades.component.validator.SimpleResponsiveBannerComponentValidator">
+		<property name="localizedValidator" ref="localizedValidator" />
+		<property name="localizedFormatMediaAttributeValidationConsumer" ref="cmsLocalizedFormatMediaAttributeValidationConsumer" />
+		<property name="localizedFormatStringAttributeValidationConsumer" ref="cmsLocalizedFormatStringAttributeValidationConsumer" />
+		<property name="cmsRequiredMediaFormatQualifiers" ref="cmsRequiredMediaFormatQualifiers" />
+		<property name="validStringLengthPredicate" ref="validStringLengthPredicate" />
+	</bean>
+	
+</beans>

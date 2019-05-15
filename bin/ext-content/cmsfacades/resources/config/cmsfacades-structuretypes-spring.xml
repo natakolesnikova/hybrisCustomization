@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:context="http://www.springframework.org/schema/context" 
+		xmlns:util="http://www.springframework.org/schema/util"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<import resource="cmsfacades-structuretypes-mode-service-spring.xml" />
+	<import resource="cmsfacades-structuretypes-mode-config-spring.xml" />
+	<import resource="cmsfacades-structuretypes-registry-service-spring.xml" />
+	<import resource="cmsfacades-structuretypes-registry-config-spring.xml" />
+	<import resource="cmsfacades-structuretypes-generic-service-spring.xml" />
+	<import resource="cmsfacades-structuretypes-generic-config-spring.xml" />
+	<import resource="cmsfacades-structuretypes-generic-blacklist-spring.xml" />
+
+	<!-- Facade -->
+
+	<alias name="defaultComponentTypeFacade" alias="componentTypeFacade" />
+	<bean id="defaultComponentTypeFacade" class="de.hybris.platform.cmsfacades.types.impl.DefaultComponentTypeFacade">
+		<property name="componentTypeStructureService" ref="cmsComponentTypeStructureService" />
+		<property name="structureTypeModeService" ref="cmsStructureTypeModeService" />
+		<property name="componentTypeStructureConverter" ref="cmsComponentTypeStructureModelConverter" />
+		<property name="typeService" ref="typeService" />
+	</bean>
+
+	<!-- Validator -->
+	<alias name="defaultDependsOnAttributePostCreationValidator" alias="dependsOnAttributePostCreationValidator" />
+	<bean id="defaultDependsOnAttributePostCreationValidator"
+		  class="de.hybris.platform.cmsfacades.types.service.validator.DependsOnAttributePostCreationValidator">
+	</bean>
+
+	<alias name="defaultStructureTypesPostCreationValidator" alias="structureTypesPostCreationValidator" />
+	<bean id="defaultStructureTypesPostCreationValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<property name="validators">
+			<list merge="true">
+				<ref bean="dependsOnAttributePostCreationValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Converter -->
+	<alias name="defaultCmsComponentTypeStructureModelConverter" alias="cmsComponentTypeStructureModelConverter"/>
+	<bean id="defaultCmsComponentTypeStructureModelConverter" class="de.hybris.platform.cmsfacades.types.converter.ComponentTypeStructureConverter">
+		<property name="stringDecapitalizer" ref="cmsStringDecapitalizer" />
+		<property name="componentTypeAttributeDataFactory" ref="componentTypeAttributeDataFactory" />
+		<property name="typeService" ref="typeService" />
+	</bean>
+
+	<alias name="defaultStringDecapitalizer" alias="cmsStringDecapitalizer" />
+	<bean id="defaultStringDecapitalizer" class="de.hybris.platform.cmsfacades.common.service.impl.DefaultStringDecapitalizer"/>
+
+</beans>

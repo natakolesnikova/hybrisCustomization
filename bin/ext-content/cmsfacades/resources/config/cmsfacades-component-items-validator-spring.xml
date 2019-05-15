@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- Component Validators -->
+
+	<alias name="defaultComponentValidatorFactory" alias="cmsComponentValidatorFactory" />
+	<util:map id="defaultComponentValidatorFactory">
+		<description>deprecated since 6.6</description>
+		<entry value-ref="cmsBasicCompositeValidator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.AbstractCMSComponentData</value>
+			</key>
+		</entry>
+
+		<entry value-ref="cmsParagraphCompositeValidator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.CMSParagraphComponentData</value>
+			</key>
+		</entry>
+
+		<entry value-ref="cmsBannerCompositeValidator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.BannerComponentData</value>
+			</key>
+		</entry>
+
+		<entry value-ref="cmsLinkCompositeValidator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.CMSLinkComponentData</value>
+			</key>
+		</entry>
+
+	</util:map>
+
+	<alias name="defaultBaseComponentValidator" alias="baseComponentValidator" />
+	<bean id="defaultBaseComponentValidator" class="de.hybris.platform.cmsfacades.items.validator.BaseComponentValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validStringLengthPredicate" ref="validStringLengthPredicate" />
+		<property name="typeCodeExistsPredicate" ref="typeCodeExistsPredicate" />
+	</bean>
+
+	<alias name="defaultBannerComponentValidator" alias="bannerComponentValidator" />
+	<bean id="defaultBannerComponentValidator" class="de.hybris.platform.cmsfacades.items.validator.BannerComponentValidator">
+		<property name="localizedValidator" ref="localizedValidator" />
+		<property name="localizedStringValidator" ref="cmsLocalizedStringValidator" />
+		<property name="localizedMediaValidator" ref="cmsLocalizedMediaValidator" />
+	</bean>
+
+	<alias name="defaultParagraphComponentValidator" alias="paragraphComponentValidator" />
+	<bean id="defaultParagraphComponentValidator" class="de.hybris.platform.cmsfacades.items.validator.ParagraphComponentValidator">
+		<property name="localizedValidator" ref="localizedValidator" />
+	</bean>
+
+	<alias name="defaultLinkComponentValidator" alias="linkComponentValidator" />
+	<bean id="defaultLinkComponentValidator" class="de.hybris.platform.cmsfacades.items.validator.LinkComponentValidator">
+		<property name="localizedValidator" ref="localizedValidator" />
+		<property name="localizedStringValidator" ref="cmsLocalizedStringValidator" />
+		<property name="itemModelExistsPredicate" ref="cmsItemModelExistsPredicate" />
+	</bean>
+
+	<util:list id="cmsRequiredMediaFormatQualifiers">
+		<description>deprecated since 6.6</description>
+		<value>widescreen</value>
+	</util:list>
+
+	<alias name="defaultBasicCompositeValidator" alias="cmsBasicCompositeValidator" />
+	<bean id="defaultBasicCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="baseComponentValidator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultParagraphCompositeValidator" alias="cmsParagraphCompositeValidator" />
+	<bean id="defaultParagraphCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="baseComponentValidator" />
+				<ref bean="paragraphComponentValidator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultBannerCompositeValidator" alias="cmsBannerCompositeValidator" />
+	<bean id="defaultBannerCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="baseComponentValidator" />
+				<ref bean="bannerComponentValidator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultLinkCompositeValidator" alias="cmsLinkCompositeValidator" />
+	<bean id="defaultLinkCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="baseComponentValidator" />
+				<ref bean="linkComponentValidator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCreateComponentValidator" alias="createComponentValidator" />
+	<bean id="defaultCreateComponentValidator" class="de.hybris.platform.cmsfacades.items.validator.CreateComponentValidator">
+		<description>deprecated since 6.6</description>
+		<property name="contentSlotExistsPredicate" ref="contentSlotExistsPredicate" />
+		<property name="componentTypeAllowedForContentSlotPredicate" ref="componentTypeAllowedForContentSlotPredicate" />
+		<property name="validStringLengthPredicate" ref="validStringLengthPredicate" />
+		<property name="validationDtoFactory" ref="validationDtoFactory" />
+		<property name="pageExistsPredicate" ref="pageExistsPredicate" />
+		<property name="cmsComponentValidatorFactory" ref="cmsComponentValidatorFactory" />
+		<property name="componentExistsPredicate" ref="componentExistsPredicate" />
+	</bean>
+
+	<alias name="defaultUpdateComponentValidator" alias="updateComponentValidator" />
+	<bean id="defaultUpdateComponentValidator" class="de.hybris.platform.cmsfacades.items.validator.UpdateComponentValidator">
+		<description>deprecated since 6.6</description>
+		<property name="componentExistsPredicate" ref="componentExistsPredicate" />
+		<property name="cmsComponentValidatorFactory" ref="cmsComponentValidatorFactory" />
+	</bean>
+	
+</beans>

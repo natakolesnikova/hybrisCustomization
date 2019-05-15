@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <context:annotation-config/>
+
+    <alias name="defaultExcelExportWizardForm" alias="excelExportWizardForm"/>
+    <bean id="defaultExcelExportWizardForm" class="com.hybris.backoffice.excel.export.wizard.ExcelExportWizardForm" scope="prototype"/>
+
+    <alias name="defaultAttributeChooserTreeItemRenderer" alias="attributeChooserTreeItemRenderer"/>
+    <bean id="defaultAttributeChooserTreeItemRenderer" class="com.hybris.backoffice.excel.export.wizard.renderer.attributechooser.DefaultAttributeChooserTreeItemRenderer" scope="prototype">
+        <property name="labelService" ref="labelService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <alias name="defaultAttributeChooserRenderer" alias="attributeChooserRenderer"/>
+    <bean id="defaultAttributeChooserRenderer" class="com.hybris.backoffice.excel.export.wizard.renderer.attributechooser.DefaultAttributeChooserRenderer">
+        <property name="treeItemRenderer" ref="attributeChooserTreeItemRenderer"/>
+        <property name="nodeOperationsHandler" ref="attributeChooserNodeOperationsHandler"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <alias name="defaultAttributeChooserNodeOperationsHandler" alias="attributeChooserNodeOperationsHandler"/>
+    <bean id="defaultAttributeChooserNodeOperationsHandler" class="com.hybris.backoffice.excel.export.wizard.renderer.attributechooser.DefaultNodeOperationsHandler">
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <alias name="defaultExcelExportRenderer" alias="excelExportRenderer"/>
+    <bean id="defaultExcelExportRenderer" class="com.hybris.backoffice.excel.export.wizard.renderer.ExcelExportRenderer">
+        <property name="labelService" ref="labelService"/>
+        <property name="permissionFacade" ref="permissionFacade"/>
+        <property name="typeService" ref="typeService"/>
+        <property name="cockpitLocaleService" ref="cockpitLocaleService"/>
+        <property name="excelTranslatorRegistry" ref="excelTranslatorRegistry"/>
+        <property name="attributesChooserRenderer" ref="attributesChooserRenderer"/>
+        <property name="notificationService" ref="notificationService"/>
+    </bean>
+
+    <alias name="defaultExcelExportHandler" alias="excelExportHandler"/>
+    <bean id="defaultExcelExportHandler" class="com.hybris.backoffice.excel.export.wizard.ExcelExportHandler">
+        <property name="exportService" ref="excelExportService"/>
+        <property name="notificationService" ref="notificationService"/>
+        <property name="typeService" ref="typeService"/>
+        <property name="localizationService" ref="localizationService"/>
+    </bean>
+
+    <alias name="defaultExcelImportWizardForm" alias="excelImportWizardForm"/>
+    <bean id="defaultExcelImportWizardForm" class="com.hybris.backoffice.excel.imp.wizard.ExcelImportWizardForm" scope="prototype"/>
+
+    <alias name="defaultExcelImportHandler" alias="excelImportHandler"/>
+    <bean name="defaultExcelImportHandler" class="com.hybris.backoffice.excel.imp.wizard.ExcelImportHandler">
+        <property name="excelCronJobService" ref="excelCronJobService"/>
+        <property name="cronJobService" ref="cronJobService"/>
+        <property name="cockpitEventQueue" ref="cockpitEventQueue"/>
+        <property name="excelImportService" ref="excelImportService"/>
+        <property name="mimeService" ref="mimeService"/>
+        <property name="notificationService" ref="notificationService" />
+    </bean>
+
+    <alias name="defaultExcelImportDownloadValidationErrorHandler" alias="excelImportDownloadValidationErrorHandler"/>
+    <bean name="defaultExcelImportDownloadValidationErrorHandler" class="com.hybris.backoffice.excel.imp.wizard.ExcelImportDownloadValidationErrorHandler">
+    </bean>
+
+	<alias name="defaultExcelValidator" alias="excelValidator" />
+	<bean name="defaultExcelValidator" class="com.hybris.backoffice.excel.imp.ExcelValidator">
+		<property name="notificationService" ref="notificationService" />
+	</bean>
+
+    <alias name="defaultExcelImportRenderer" alias="excelImportRenderer"/>
+    <bean id="defaultExcelImportRenderer" class="com.hybris.backoffice.excel.imp.wizard.renderer.ExcelImportRenderer">
+        <property name="excelValidator" ref="excelValidator"/>
+    </bean>
+
+    <alias name="defaultExcelImportValidationResultRenderer" alias="excelImportValidationResultRenderer"/>
+    <bean id="defaultExcelImportValidationResultRenderer" class="com.hybris.backoffice.excel.imp.wizard.renderer.ExcelImportValidationResultRenderer">
+        <property name="listitemRenderer" ref="excelImportValidationRowResultRenderer"/>
+    </bean>
+
+    <alias name="defaultExcelImportValidationRowResultRenderer" alias="excelImportValidationRowResultRenderer"/>
+    <bean id="defaultExcelImportValidationRowResultRenderer" class="com.hybris.backoffice.excel.imp.wizard.renderer.ExcelImportValidationRowResultRenderer"/>
+
+    <alias name="defaultExcelImportProcessItemRenderingStrategy" alias="excelImportProcessItemRenderingStrategy"/>
+    <bean id="defaultExcelImportProcessItemRenderingStrategy"
+          class="com.hybris.backoffice.excel.imp.ExcelImportProcessItemRenderingStrategy"
+          parent="defaultProcessItemRenderingStrategy">
+        <property name="order" value="100"/>
+    </bean>
+</beans>

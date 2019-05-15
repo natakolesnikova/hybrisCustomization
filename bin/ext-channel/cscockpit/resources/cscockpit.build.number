@@ -1,0 +1,11 @@
+#Ant properties
+#Tue Mar 06 15:27:01 UTC 2018
+builddate=20180306 1526
+description=cscockpit
+group.id=de.hybris.platform
+module.name=platform-module
+name=cscockpit
+releasedate=20180227 1939
+vendor=hybris
+version=6.7.0.0
+version.api=6.7.0

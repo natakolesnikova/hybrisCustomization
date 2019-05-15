@@ -1,0 +1,104 @@
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    PerspectiveChooser Menu (Systembar)
+================================*/
+// Relevant Changes applied to the Perspective Chooser Menu
+
+
+@import "../../systemBarWidget/scss/support/_systembar-variables.scss";
+
+.yw-perspective-breadcrumb {
+  cursor: pointer;
+  float: left;
+  position: relative;
+  display: block;
+  padding: $systembar__perspective-breadcrumb--padding;
+  margin-right: $systembar__perspective-breadcrumb--margin-right;
+
+  .z-hlayout-inner + .z-hlayout-inner & {
+    border-left: $systembar__perspective-item--border;
+  }
+  .z-caption {
+    width: $systembar__perspective-caption--width;
+    display: inline-block;
+  }
+  .z-caption,
+  .z-icon-caret-down {
+    color: $systembar-popup__list-cell--font-color;
+  }
+  &.yw-perspective-breadcrumb-expanded {
+    background: $systembar__container-hover--bg-color;
+  }
+  .z-caption-content {
+    line-height: $systembar__perspective-breadcrumb-content--line-height;
+    padding: $systembar__perspective-breadcrumb-content--padding;
+  }
+  .z-caption-image {
+    margin-right: $systembar__perspective-item-image--margin-right;
+  }
+  .z-menu-icon {
+    display: inline-block;
+    position: $systembar__perspective-item-icon--position;
+    font-size: $systembar__perspective-item-icon--font-size;
+    line-height: $systembar__perspective-item-icon--line-height;
+    margin-left: $systembar__perspective-item-icon--margin-left;
+    vertical-align: top;
+  }
+
+  @media (max-width: 499px) {
+    .z-caption-content {
+      text-overflow: $systembar__perspective-breadcrumb-content--text-overflow__screen-s;
+      overflow: $systembar__perspective-breadcrumb-content--overflow__screen-s;
+      white-space: $systembar__perspective-breadcrumb-content--white-space__screen-s;
+      max-width: $systembar__perspective-breadcrumb-content--max-width__screen-s;
+    }
+    .z-caption-image {
+      display: $systembar__perspective-item-image--display__screen-s;
+    }
+    .z-menu-icon {
+      margin-left: $systembar__perspective-item-icon--margin-left__screen-s;
+    }
+  }
+}
+
+.yw-perspective-menu .z-menubar-horizontal {
+  background-color: transparent;
+
+  .yw-domain-node {
+    display: table-cell;
+    margin-right: 0;
+    margin-left: $systembar__perspective-menu-domain-node--margin-left;
+    
+    &:first-child {
+      margin-left: 0;
+    }
+    .z-menuitem-content {
+      background-color: $systembar__container--bg-color;
+      height: $systembar__container--sizer;
+      min-width: $systembar__container--sizer;
+      z-index: initial;
+      display: table-cell;
+      vertical-align: middle;
+      line-height: initial;
+      margin: auto 0;
+      text-align: center;
+      table-layout: fixed;
+      padding: 0;
+    }
+    .z-menuitem-content:hover,
+    &.yw-selectednode .z-menuitem-content {
+      background-color: $systembar__container-hover--bg-color;
+    }
+    .z-menuitem-text {
+      vertical-align: middle;
+    }
+    .z-menuitem-text:empty {
+      display: none;
+    }
+    .z-menuitem-image {
+      top: auto;
+    }
+  }
+}

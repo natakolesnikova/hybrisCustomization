@@ -1,0 +1,12 @@
+.yas-categoryelector {
+  background-color: #151c22; }
+  .yas-categoryelector > .z-tree {
+    margin-left: 30px; }
+  .yas-categoryelector .z-treecell {
+    border: none; }
+  .yas-categoryelector .z-treerow .z-treecell-content {
+    color: #ffffff; }
+  .yas-categoryelector .z-treerow-selected .z-treecell-content {
+    color: #0486e0; }
+  .yas-categoryelector .z-treerow:hover .z-treecell-content {
+    color: #a6b3c4; }

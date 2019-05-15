@@ -1,0 +1,135 @@
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+
+$referenceadvancedsearchgroup__advancedsearch-attributes-container--border-width: $boxes--border__thin;
+$referenceadvancedsearchgroup__advancedsearch-attributes-container--border-color: $grey__default--700;
+$referenceadvancedsearchgroup__advancedsearch-attributes-container--border: $referenceadvancedsearchgroup__advancedsearch-attributes-container--border-width solid $referenceadvancedsearchgroup__advancedsearch-attributes-container--border-color;
+$referenceadvancedsearchgroup__listview-toolbar--padding-y: $container-spacing-default__third;
+$referenceadvancedsearchgroup__advancedsearch-attributes-container--border-space-x: $container-spacing-default__base;
+.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearchgroup {
+	.yw-com_hybris_cockpitng_advancedsearch {
+		display: block;
+		height: 100%;
+		position: relative;
+
+		> .yw-caption-container {
+			display:block;
+			position: static;
+		}
+
+		> .yw-topcontainer-open {
+			display: block;
+			position: absolute;
+			z-index: 0;
+			width: 100%;
+			height: auto !important;
+			overflow: auto;
+			top: 50px;
+			bottom: 0;
+		}
+		.yw-active-attributes-grid {
+			width: auto;
+
+			.z-grid-header {
+				width: auto !important;
+				max-width: 100%;
+			}
+		}
+		.yw-search-mode-container {
+			padding-left: 20px;
+		}
+	}
+
+	.yw-com_hybris_cockpitng_collectionBrowser .y-statusbar,
+	.yw-com_hybris_cockpitng_advancedsearch .yw-toggle-advanced-search.yw-toggle-open {
+		display: none;
+	}
+
+	.yw-coll-browser-container div.z-listbox-body,
+	.yw-coll-browser-container tbody.z-listbox-emptybody td {
+		background-color: white;
+	}
+	.yw-active-attributes-grid > .z-grid-body > table {
+		margin-bottom: 0;
+	}
+	.yw-advancedsearch {
+		.yw-caption-container.yw-noncollapsible-caption {
+			padding: 0 $container-spacing-default__third $container-spacing-default__third;
+			.yw-textsearch {
+				overflow: hidden;
+			}
+		}
+		.yw-topcontainer-open {
+			border: $referenceadvancedsearchgroup__advancedsearch-attributes-container--border;
+			border-width: $referenceadvancedsearchgroup__advancedsearch-attributes-container--border-width 0;
+			
+			.yw-active-attributes-grid {
+				width: auto !important;
+				overflow: visible;	
+			}
+			.yw-active-attributes-grid-container {
+			//	width: auto;
+			//	height: auto;
+			}
+			.z-grid-body {
+				width: auto !important;
+			}
+		}
+	}
+	.yw-listview-actioncontainer {
+		padding-top: $referenceadvancedsearchgroup__listview-toolbar--padding-y;
+		padding-bottom: $referenceadvancedsearchgroup__listview-toolbar--padding-y;
+		border-bottom: $referenceadvancedsearchgroup__advancedsearch-attributes-container--border;
+		
+		.y-toolbar {
+			border-width: 0;
+			padding: 0;
+		}
+	}
+}
+
+@media (max-width: 1100px) {
+	.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearchgroup .yw-com_hybris_cockpitng_advancedsearch > .yw-caption-container .yw-buttons-container {
+		float: right;
+	}
+}
+
+@media (max-width: 1080px) {
+	.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearchgroup .yw-com_hybris_cockpitng_advancedsearch {
+		> .yw-topcontainer-open {
+			top: 90px;
+		}
+		> .yw-caption-container .yw-search-mode-container {
+			float: none;
+		}
+	}
+}
+
+@media screen and (max-width: 980px) {
+	.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearchgroup {
+		.yw-com_hybris_cockpitng_advancedsearch {
+			> .yw-caption-container  .yw-textsearch-searchbox {
+				width: auto;
+				max-width: 70%;
+				width: 70%;
+			}
+			> .yw-caption-container .yw-textsearch .yw-global-typeSelector.z-bandbox {
+				max-width: none;
+				width: unset;
+			}
+		}
+		.yw-advancedsearch-header-container .yw-global-typeSelector-container.yw-advancedsearch-header-container {
+			width: auto;
+		}
+		.yw-textsearch.yw-toggle-open .yw-buttons-container{
+			margin-right: 0;
+		}
+	}
+}
+
+@media screen and (max-width: 950px) {
+	.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearchgroup .yw-com_hybris_cockpitng_advancedsearch > .yw-topcontainer-open {
+		top: 130px;
+	}
+}

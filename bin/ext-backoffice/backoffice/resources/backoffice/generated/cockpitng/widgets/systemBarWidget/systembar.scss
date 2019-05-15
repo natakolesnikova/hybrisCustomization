@@ -1,0 +1,177 @@
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    Systembar (General)
+================================*/
+// Defined Styling relevant for Systembar
+
+
+@import "scss/support/_systembar-mixins.scss";
+
+@mixin _systembarClearBefore () {
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+.yw-systemBarContainer {
+    background-color: $systembar--container--bg-color;
+
+    @include _systembarClearBefore;
+
+    .yw-statusToolbar {
+        line-height: 0;
+        height: auto;
+        @include _systembarClearBefore;
+
+        &-left{
+            float: $systembar__toolbar-part-left--float;
+        }
+
+        &-center{
+            width: $systembar__toolbar-part-center--width;
+            height: $systembar__toolbar-part-center--height;
+            position: $systembar__toolbar-part-center--position;
+            text-align: $systembar__toolbar-part-center--text-align;
+        }
+
+        &-right{
+            float: $systembar__toolbar-part-right--float;
+            text-align: $systembar__toolbar-part-right--text-align;
+
+            > .z-toolbarbutton:last-child {
+                margin-right: 0;
+            }
+            .ie10 & > .widget_cnt > .widget_children_list > .widget_cnt {
+                float: left;
+            }
+            .yw-toolbar > .yw-toolbar-content > .yw-toolbar-actions {
+                float: left;
+            }
+        }
+        > .widget_children > .widget_children_list > .widget_cnt {
+            vertical-align: top;
+        }
+        .yw-toolbar > .yw-toolbar-content {
+             display: inline-block;
+        }
+        .yw-toolbar-before,
+        .yw-toolbar-after {
+            > .widget_cnt:empty {
+                display: none;
+            }
+        }
+
+        .yw-logoContainer {
+            width: $systembar__logo-container--width;
+            height: $systembar__logo-container--height;
+            background: {
+                image: $systembar__logo-container--image-url;
+                repeat: $systembar__logo-container--image-repeat;
+                position: $systembar__logo-container--image-position;
+                size: $systembar__logo-container--image-size;
+            }
+            margin: $systembar__toolbar-logo--margin;
+            display: inline-block;
+            vertical-align: top;
+
+            @media (max-width: 699px) {
+                width: $systembar__logo-container--width__screen-m;
+            }
+        }
+
+        .yw-perspectiveChooser {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .yw-systemItemsContainer {
+            line-height: $systembar__system-items-container--line-height;
+            display: inline-flex;
+            vertical-align: top;
+        }
+
+        .z-toolbarbutton {
+            width: $systembar__toolbar-button--width;
+            height: $systembar__toolbar-button--height;
+            line-height: $systembar__toolbar-button--line-height;
+            text-align: $systembar__toolbar-button--text-align;
+            vertical-align: top;
+            margin: 0;
+            padding: 0;
+            
+            + .z-label {
+                border-color: $systembar--container--bg-color;
+            }
+
+            &:hover, &:focus, &:active {
+                background-color: $systembar__container-hover--bg-color;
+                
+                + .z-label {
+                    border-color: $systembar__container-hover--bg-color;
+                }
+            }
+        }
+        span[style="display: none;"] + .z-toolbarbutton {
+            background-color: $systembar__toolbar-button-toggle-active--bg-color;
+        } 
+        .ya-toggle {
+            position: $systembar__toolbar-button-toggle--position;
+
+            &-active {
+                background-color: $systembar__toolbar-button-toggle-active--bg-color;
+            }
+        }
+        .widget_cnt {
+            display: inline-block;
+        }
+    }
+}
+
+.yw-systemBarMenu {
+    &-popup {
+        @include _default_systembar_popup();
+        
+        &-title {
+            display: block;
+            padding: $systembar-popup__plain-label--padding;
+            line-height: $systembar-popup__plain-label--line-height;
+            border-bottom: $systembar-popup__list-cell--border-top;
+        }
+        .z-listbox-emptybody td {
+            padding: $systembar-popup__list-cell--padding;
+            background-color: $systembar-popup__item--bg-color;
+            border-top: $systembar-popup__list-cell--border-top;
+            @include _systembar_fonts ();
+        }
+    }
+}
+
+.yw-dev-toolbar-actions {
+
+    & .z-hbox-separator {
+        display: none;
+    }
+
+    & .cng-action {
+        width: $systembar__toolbar-button--width;
+
+        img {
+            &:hover, &:focus, &:active {
+                background: $blue__default--100 !important;
+            }
+        }
+
+        table {
+            width: 100%;
+            text-align: center !important;;
+        }
+
+        &:hover, &:focus, &:active {
+            background: $blue__default--100 !important;
+        }
+    }
+}

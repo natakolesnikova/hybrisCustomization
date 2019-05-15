@@ -1,0 +1,132 @@
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    Systembar Variables
+================================*/
+// SASS Variables relevant for:
+// - Systembar (General)
+// - Quick Locale Toggle Popup
+// - User Role Chooser Popup
+// - Perspective Chooser Popup
+
+
+
+$systembar__default--font-color: $white;
+$systembar__default--font-weight: $font-weight-normal;
+$systembar__default--font-size: $font-size__base;
+$systembar__default--font-family: $font-family-opensans;
+$systembar__default--border-color: rgba($white, 0.1);
+
+$systembar__container--sizer: $globals__toolbar--height;
+
+$systembar__container--bg-color: $navigation__top-menu--bg-color;
+$systembar__container-hover--bg-color: $blue__default--100;
+
+$systembar__perspective-breadcrumb--padding: (($systembar__container--sizer - 32px) / 2) (($systembar__container--sizer - 18px) / 2);
+$systembar__perspective-breadcrumb--margin-right: 0;
+$systembar__perspective-breadcrumb-content--padding: 0;
+
+$systembar__perspective-breadcrumb-content--text-overflow__screen-s: ellipsis;
+$systembar__perspective-breadcrumb-content--overflow__screen-s: hidden;
+$systembar__perspective-breadcrumb-content--white-space__screen-s: nowrap;
+$systembar__perspective-breadcrumb-content--max-width__screen-s: 50px;
+
+//line-height has to be same as .z-caption min-height from zk.css
+$systembar__perspective-breadcrumb-content--line-height: 32px;
+
+$systembar__perspective-item--border-color: $systembar__default--border-color;
+$systembar__perspective-item--border: $boxes--border__thin solid $systembar__perspective-item--border-color;
+
+$systembar__perspective-caption--width: auto;
+
+$systembar__perspective-item-image--margin-right: 5px;
+$systembar__perspective-item-image--display__screen-s: none;
+$systembar__perspective-item-icon--position: static;
+$systembar__perspective-item-icon--font-size: 28px;
+$systembar__perspective-item-icon--line-height: $systembar__perspective-breadcrumb-content--line-height;
+$systembar__perspective-item-icon--margin-left: 10px;
+$systembar__perspective-item-icon--margin-left__screen-s: 0;
+
+$systembar__perspective-menu--border-color: $systembar__default--border-color;
+$systembar__perspective-menu--border-width: $boxes--border__thin;
+$systembar__perspective-menu-domain-node--margin-left: $systembar__perspective-menu--border-width;
+$systembar__perspective-menu--border: $systembar__perspective-menu--border-width solid $systembar__perspective-menu--border-color;
+
+$systembar__system-items-container--line-height: $systembar__container--sizer;
+
+$systembar__toolbar-part-left--float: left;
+$systembar__toolbar-part-center--width: 100%;
+$systembar__toolbar-part-center--height: 0;
+$systembar__toolbar-part-center--position: absolute;
+$systembar__toolbar-part-center--text-align: center;
+$systembar__toolbar-part-right--float: right;
+$systembar__toolbar-part-right--text-align: right;
+
+$systembar__toolbar-button--line-height: $systembar__container--sizer;
+$systembar__toolbar-button--width: $systembar__container--sizer;
+$systembar__toolbar-button--height: $systembar__container--sizer;
+$systembar__toolbar-button--text-align: center;
+
+$systembar__toolbar-button-toggle--position: relative;
+$systembar__toolbar-button-toggle-active--bg-color: mix($systembar__container--bg-color, $systembar__container-hover--bg-color, 25%);
+
+$systembar__logo-container--width: 150px;
+$systembar__logo-container--height: $systembar__container--sizer;
+$systembar__toolbar-logo--margin: 0 10px;
+
+$systembar__logo-container--width__screen-m: 28px;
+
+$systembar__logo-container--image: (
+        url: url('images/logo-commerce.svg'),
+        repeat: no-repeat,
+        position: left center,
+        size: $systembar__logo-container--width
+);
+$systembar__logo-container--image-url: map_get($systembar__logo-container--image, url);
+$systembar__logo-container--image-repeat: map_get($systembar__logo-container--image, repeat);
+$systembar__logo-container--image-position: map_get($systembar__logo-container--image, position);
+$systembar__logo-container--image-size: map_get($systembar__logo-container--image, size);
+
+$systembar-popup__menu--width: 240px;
+$systembar-popup__menu--top: $systembar__container--sizer;
+
+$systembar-popup__content--padding: 0;
+
+$systembar-popup__item--bg-color: $navigation__popup--bg-color;
+$systembar-popup__item-hover--bg-color: $navigation__popup-hover--bg-color;
+$systembar-popup__item-selected--bg-color: $navigation__popup-selected--bg-color;
+
+$systembar-popup__treerow--width: 100%;
+$systembar-popup__treerow--indentation: 15px;
+$systembar-popup__treerow--indentation-step: 10px;
+
+$systembar-popup__tree-cell--padding: 10px;
+$systembar-popup__tree-cell-content--padding: 0;
+$systembar-popup__tree-cell-label-content--padding-right: 10px;
+$systembar-popup__tree-cell-icon-content--padding: 0;
+$systembar-popup__tree-cell-image--min-height: 30px;
+$systembar-popup__tree-cell-image--margin-right: 10px;
+$systembar-popup__tree-icon--padding: 15px;
+
+$systembar-popup__list-cell--font-color: $systembar__default--font-color;
+$systembar-popup__list-cell--padding: 8px 10px;
+$systembar-popup__list-cell-content--padding: 5px;
+$systembar-popup__list-cell--border-color: $systembar__default--border-color;
+$systembar-popup__list-cell--border-top: $boxes--border__thin solid $systembar-popup__list-cell--border-color;
+$systembar-popup__list-cell--border-bottom: none;
+
+$systembar-popup__plain-label--padding: 13px 15px;
+$systembar-popup__plain-label--line-height: 20px;
+
+$systembar-popup__icon-check--color: $white;
+$systembar-popup__icon-check--top: 0;
+$systembar-popup__icon-check--padding-top: 0;
+$systembar-popup__icon-check--margin-top: -5px;
+$systembar-popup__icon-uncheck--color: rgba($white, 0.5);
+
+$systembar__caret--font-color: $systembar__default--font-color;
+$systembar__caret-right--width: 4px;
+$systembar__caret-right--height: 14px;
+$systembar__caret-down--width: 8px;
+$systembar__caret-down--height: 14px;

@@ -1,0 +1,149 @@
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+
+
+.ye-list-paging {
+	float: right;
+}
+
+.ye-list-titlebar {
+	line-height: 28px;
+
+	&-label {
+		font-size: 14px;
+		font-weight: 500;
+		color: #323B44;
+		background: none repeat scroll 0 0 transparent;
+	}
+}
+
+.ye-list-titlespan-value {
+	font-size: 14px;
+	font-weight: 500;
+	color: #085ABC;
+	background: none repeat scroll 0 0 transparent;
+}
+
+.ye-list-showmore {
+	height: 25px;
+	text-align: center;
+	cursor: pointer;
+	bottom: 0;
+}
+
+.ye-list-toolbar,
+.ye-list-content .z-listbox {
+	border-color: $grey__default--900
+}
+
+.ye-list-content .z-listbox {
+	border-top-color: rgba($blue__greyish--400, 0.2);
+}
+
+.ye-list-toolbar .z-button {
+	width: 40px;
+	height: 40px;
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	&:hover{
+		background-color: $white;
+	}
+
+	&[disabled]{
+		cursor: default;
+	}
+
+	&.ye-list-toolbar-button-add {
+		background-image: url("icons/icon_func_add_default.png");
+
+		&:hover {
+			background-image: url("icons/icon_func_add_hover.png");
+		}
+
+		&[disabled] {
+			background-image: url("icons/icon_func_add_disabled.png");
+		}
+	}
+
+	&.ye-list-toolbar-button-edit {
+		background-image: url("icons/icon_func_edit_default.png");
+
+		&:hover {
+			background-image: url("icons/icon_func_edit_hover.png");
+		}
+
+		&[disabled] {
+			background-image: url("icons/icon_func_edit_disabled.png");
+		}
+	}
+
+	&.ye-list-toolbar-button-delete {
+		background-image: url("icons/icon_func_delete_default.png");
+
+		&:hover {
+			background-image: url("icons/icon_func_delete_hover.png");
+		}
+
+		&[disabled] {
+			background-image: url("icons/icon_func_delete_disabled.png");
+		}
+	}
+}
+
+.ye-list-listbox {
+	.z-paging {
+		line-height: $toolbar__vertical-centering-base--height;
+	}
+	.ye-list-line-editor,
+	.z-listitem:hover .ye-list-line-editor,
+	div.z-listbox-body .z-listcell.z-draggable-over,
+	div.z-listbox-body tr.z-listitem-selected.z-listitem td.ye-list-line-editor div.z-listcell-content {
+		background: $white;
+	}
+}
+
+
+.ye-list-line-editor button {
+	float: right;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+.ye-list-inline-cancel {
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	margin-top: -8px;
+}
+
+.ye-list-toolbar-popup-add {
+	&.z-popup-open > .z-popup-content {
+		padding: 10px;
+	}
+	&.z-popup .z-popup-cl {
+		background: #a5aebb;
+	}
+	.ye-btn-container {
+		text-align: right;
+		> button.z-button.ye-btn-cancel,
+		> button.z-button.y-btn-primary {
+			margin: 0 0 0 5px;
+			padding: 0 15px;
+		}
+	}
+	&-checkbox {
+		display: inline-block;
+		margin-top: 10px;
+	}
+}
+
+.ye-com_hybris_cockpitng_editor_defaultlist {
+	td.z-listcell > div.z-listcell-content {
+		min-height: 18px;
+	}
+	.ye-list-inline-editor .ye-com_hybris_cockpitng_editor_defaulttext {
+		width: 100%;
+	}
+}

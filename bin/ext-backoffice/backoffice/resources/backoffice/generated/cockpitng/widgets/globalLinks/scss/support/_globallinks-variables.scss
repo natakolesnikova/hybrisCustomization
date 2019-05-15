@@ -1,0 +1,30 @@
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/home/n-kolesnikova/hybrisCustomization/hybris/bin/ext-backoffice/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    Global Links Variables
+================================*/
+// Relevant Changes applied to the Global Links Variables
+
+
+
+$globallinks__popup-container--width: 225px;
+$globallinks__popup-item--width: 50%;
+$globallinks__popup-item--bg-color: $navigation__popup--bg-color;
+$globallinks__popup-item-hover--bg-color: $navigation__popup-hover--bg-color;
+$globallinks__popup-item-selected--bg-color: $navigation__popup-selected--bg-color;
+$globallinks__popup-item--transition: background-color 0.5s ease;
+
+$globallinks__default--border-color: rgba($white, 0.1);
+$globallinks__popup-item--border-color: $globallinks__default--border-color;
+$globallinks__popup-item--border: $boxes--border__thin solid $globallinks__popup-item--border-color;
+$globallinks__default--box-shadow: 1px 1px 0px 0px $globallinks__default--border-color;
+
+$globallinks__navigation-icon--height: 62px;
+$globallinks__navigation-icon--padding: 10px 5px;
+$globallinks__navigation-icon--margin: 20px auto 15px;
+$globallinks__navigation-btn--height: 30px;
+$globallinks__navigation-label--padding: 0 5px 20px 5px;
+$globallinks__navigation-label--color: $white;
+$globallinks__navigation-label--text-align: center;
+$globallinks__navigation-label--line-height: 18px;

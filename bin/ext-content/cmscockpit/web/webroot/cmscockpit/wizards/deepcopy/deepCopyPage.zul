@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
+ 
+<zk xmlns="http://www.zkoss.org/2005/zul"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:h="http://www.w3.org/1999/xhtml"
+        xmlns:zk="http://www.zkoss.org/2005/zk"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd ">
+    <div style="text-align: left;">
+       
+			<div sclass="wizardPageDescription">
+				<label value="${c:l('deepcopywizard.wizard.page.header')}"/>
+			</div>
+         <div style="margin: 30px; margin-top: 20px; font-size: 10px;" >
+			<hbox widths="200px,none">
+                <label value="${c:l('deepcopywizard.wizard.pagename.new')}"/>
+                <textbox id="newPageNameText" value="" width="200px" onChange='setAttr("newPageName", self.getValue())'/>
+            </hbox>
+		</div>
+         <div style="margin: 30px; margin-top: 20px; font-size: 10px;" >
+            <hbox widths="200px,none">
+                <label value="${c:l('deepcopywizard.wizard.cvs')}"/>
+					
+					
+			<listbox id="writeCVs" checkmark="true" multiple="false" height="150px" sclass="scrollable-listbox" vflex="false" 
+				onSelect='setAttr("selectedCVs",self.getSelectedItems());'>
+				<listhead>
+					<listheader label="Catalog"/>
+					<listheader label="Version"/>
+				</listhead>
+				<listitem forEach="${controllerBean.catalogVersions}" value="${each}">
+					<listcell label="${each.catalog}"/>
+					<listcell label="${each.version}"/>
+				</listitem>
+			</listbox>
+                    
+            </hbox>
+		</div>
+         <div style="margin: 30px; margin-top: 20px; font-size: 10px;" >
+			<hbox widths="200px,none">
+                <label value="${c:l('deepcopywizard.wizard.open')}"/>
+               
+                <checkbox id="openNewPageCheckBox" checked="false">
+					<attribute name="onCheck"><![CDATA[
+						 setAttr("isOpen",self.checked);                           
+					    ]]>
+					</attribute>
+				</checkbox>
+            </hbox>
+		</div>
+    </div>       
+</zk>

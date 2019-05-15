@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Model Populators -->
+
+	<bean id="navigationComponentModelPopulator" class="de.hybris.platform.acceleratorfacades.component.populators.model.NavigationComponentModelPopulator">
+	</bean>
+
+	<bean id="cmsSimpleBannerComponentModelPopulator" class="de.hybris.platform.acceleratorfacades.component.populators.model.SimpleBannerComponentModelPopulator">
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+	</bean>
+
+	<bean id="simpleResponsiveComponentModelPopulator" class="de.hybris.platform.acceleratorfacades.component.populators.model.SimpleResponsiveBannerComponentModelPopulator">
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+	</bean>
+
+	<bean id="productCarouselComponentModelPopulator" class="de.hybris.platform.acceleratorfacades.component.populators.model.ProductCarouselComponentModelPopulator">
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+	</bean>
+
+
+	<!-- Reverse Populators -->
+
+	<bean id="defaultCmsMediaContainerPopulator" class="de.hybris.platform.acceleratorfacades.component.populators.data.MediaContainerReversePopulator">
+		<property name="mediaService" ref="mediaService" />
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+		<property name="mediaFormatService" ref="cmsMediaFormatService" />
+	</bean>
+
+	<bean id="defaultNavigationComponentPopulator" class="de.hybris.platform.acceleratorfacades.component.populators.data.NavigationComponentReversePopulator">
+		<property name="navigationService" ref="cmsNavigationService" />
+	</bean>
+
+	<bean id="defaultSimpleBannerComponentPopulator" class="de.hybris.platform.acceleratorfacades.component.populators.data.SimpleBannerComponentReversePopulator">
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+		<property name="mediaService" ref="mediaService" />
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+	</bean>
+
+	<bean id="defaultSimpleResponsiveComponentPopulator" class="de.hybris.platform.acceleratorfacades.component.populators.data.SimpleResponsiveBannerComponentReversePopulator">
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+		<property name="componentAdminService" ref="cmsAdminComponentService" />
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+		<property name="mediaContainerPopulator" ref="defaultCmsMediaContainerPopulator" />
+	</bean>
+
+	<bean id="defaultProductCarouselComponentPopulator" class="de.hybris.platform.acceleratorfacades.component.populators.data.ProductCarouselComponentReversePopulator">
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+		<property name="productCatalogItemModelFinder" ref="cmsProductCatalogItemModelFinder"/>
+	</bean>
+
+
+	<!-- Component Converters -->
+
+	<alias name="defaultSimpleBannerComponentModelConverter" alias="cmsSimpleBannerComponentModelConverter" />
+	<bean id="defaultSimpleBannerComponentModelConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.SimpleBannerComponentData" />
+
+		<property name="populators">
+			<list merge="true">
+				<ref bean="cmsBasicComponentModelPopulator" />
+				<ref bean="cmsSimpleBannerComponentModelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSimpleResponsiveBannerComponentModelConverter" alias="simpleResponsiveBannerComponentModelConverter" />
+	<bean id="defaultSimpleResponsiveBannerComponentModelConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.SimpleResponsiveBannerComponentData" />
+
+		<property name="populators">
+			<list merge="true">
+				<ref bean="cmsBasicComponentModelPopulator" />
+				<ref bean="simpleResponsiveComponentModelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultNavigationComponentModelConverter" alias="navigationComponentModelConverter" />
+	<bean id="defaultNavigationComponentModelConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.NavigationComponentData" />
+
+		<property name="populators">
+			<list merge="true">
+				<ref bean="cmsBasicComponentModelPopulator" />
+				<ref bean="navigationComponentModelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultProductCarouselComponentModelConverter" alias="cmsProductCarouselComponentModelConverter" />
+	<bean id="defaultProductCarouselComponentModelConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.ProductCarouselComponentData" />
+
+		<property name="populators">
+			<list merge="true">
+				<ref bean="cmsBasicComponentModelPopulator" />
+				<ref bean="productCarouselComponentModelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- Component Populators -->
+
+	<alias name="defaultSimpleBannerComponentPopulatorComposite" alias="cmsSimpleBannerComponentPopulator" />
+	<bean id="defaultSimpleBannerComponentPopulatorComposite" class="de.hybris.platform.cmsfacades.common.populator.impl.CompositePopulator">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="defaultBasicComponentPopulator" />
+				<ref bean="defaultSimpleBannerComponentPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSimpleResponsiveComponentPopulatorComposite" alias="cmsSimpleResponsiveComponentPopulator" />
+	<bean id="defaultSimpleResponsiveComponentPopulatorComposite" class="de.hybris.platform.cmsfacades.common.populator.impl.CompositePopulator">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="defaultBasicComponentPopulator" />
+				<ref bean="defaultSimpleResponsiveComponentPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultNavigationComponentPopulatorComposite" alias="cmsNavigationComponentPopulator" />
+	<bean id="defaultNavigationComponentPopulatorComposite" class="de.hybris.platform.cmsfacades.common.populator.impl.CompositePopulator">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="defaultBasicComponentPopulator" />
+				<ref bean="defaultNavigationComponentPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultProductCarouselComponentPopulatorComposite" alias="cmsProductCarouselComponentPopulator" />
+	<bean id="defaultProductCarouselComponentPopulatorComposite" class="de.hybris.platform.cmsfacades.common.populator.impl.CompositePopulator">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="defaultBasicComponentPopulator" />
+				<ref bean="defaultProductCarouselComponentPopulator" />
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- Component Populating Converters Map -->
+
+	<bean depends-on="cmsComponentPopulatingConverters" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.SimpleBannerComponentModel</value>
+		</property>
+		<property name="value" ref="cmsSimpleBannerComponentModelConverter" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulatingConverters" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.SimpleResponsiveBannerComponentModel</value>
+		</property>
+		<property name="value" ref="simpleResponsiveBannerComponentModelConverter" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulatingConverters" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.NavigationComponentModel</value>
+		</property>
+		<property name="value" ref="navigationComponentModelConverter" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulatingConverters" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.CategoryNavigationComponentModel</value>
+		</property>
+		<property name="value" ref="navigationComponentModelConverter" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulatingConverters" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.FooterNavigationComponentModel</value>
+		</property>
+		<property name="value" ref="navigationComponentModelConverter" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulatingConverters" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.cms2lib.model.components.ProductCarouselComponentModel</value>
+		</property>
+		<property name="value" ref="cmsProductCarouselComponentModelConverter" />
+	</bean>
+
+
+	<!-- Component Populators Map -->
+
+	<bean depends-on="cmsComponentPopulators" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.SimpleBannerComponentModel</value>
+		</property>
+		<property name="value" ref="cmsSimpleBannerComponentPopulator" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulators" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.SimpleResponsiveBannerComponentModel</value>
+		</property>
+		<property name="value" ref="cmsSimpleResponsiveComponentPopulator" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulators" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.NavigationComponentModel</value>
+		</property>
+		<property name="value" ref="cmsNavigationComponentPopulator" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulators" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.CategoryNavigationComponentModel</value>
+		</property>
+		<property name="value" ref="cmsNavigationComponentPopulator" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulators" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.acceleratorcms.model.components.FooterNavigationComponentModel</value>
+		</property>
+		<property name="value" ref="cmsNavigationComponentPopulator" />
+	</bean>
+
+	<bean depends-on="cmsComponentPopulators" parent="mapMergeDirective">
+		<property name="key">
+		 	<value type="java.lang.Class">de.hybris.platform.cms2lib.model.components.ProductCarouselComponentModel</value>
+		</property>
+		<property name="value" ref="cmsProductCarouselComponentPopulator" />
+	</bean>
+
+
+   <!-- Rendering Content Converters -->
+
+   <alias name="defaultRenderingMediaContainerToDataContentConverter" alias="accRenderingMediaContainerToDataContentConverter" />
+   <bean id="defaultRenderingMediaContainerToDataContentConverter"
+         class="de.hybris.platform.acceleratorfacades.cmsitems.attributeconverters.MediaContainerAttributeToDataRenderingContentConverter" >
+       <property name="mediaModelConverter" ref="mediaModelConverter" />
+   </bean>
+
+   <alias name="defaultRenderingMediaContainerContentConverter" alias="accRenderingMediaContainerContentConverter" />
+   <bean name="defaultRenderingMediaContainerContentConverter" parent="cmsAbstractContentConverter"
+         p:modelToDataConverter-ref="accRenderingMediaContainerToDataContentConverter"
+         p:constrainedBy-ref="accMediaContainerTypeAttributePredicate" />
+
+	<bean id="accMediaContainerTypeAttributePredicate" parent="abstractDefaultClassTypeAttributePredicate"
+			p:typeClass="de.hybris.platform.core.model.media.MediaContainerModel" />
+
+	<bean id="accRenderingAttributeContentConverterList" depends-on="cmsRenderingAttributeContentConverterList"
+			parent="listMergeDirective">
+		<property name="add" ref="accRenderingMediaContainerContentConverter" />
+	</bean>
+
+</beans>

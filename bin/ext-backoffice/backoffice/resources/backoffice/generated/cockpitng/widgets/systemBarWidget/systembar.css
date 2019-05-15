@@ -1,0 +1,162 @@
+/*================================
+    Systembar (General)
+================================*/
+/*================================
+    Systembar Mixins
+================================*/
+/*================================
+    Systembar Variables
+================================*/
+.yw-systemBarContainer {
+  background-color: #0486e0; }
+  .yw-systemBarContainer:after {
+    content: "";
+    display: block;
+    clear: both; }
+  .yw-systemBarContainer .yw-statusToolbar {
+    line-height: 0;
+    height: auto; }
+    .yw-systemBarContainer .yw-statusToolbar:after {
+      content: "";
+      display: block;
+      clear: both; }
+    .yw-systemBarContainer .yw-statusToolbar-left {
+      float: left; }
+    .yw-systemBarContainer .yw-statusToolbar-center {
+      width: 100%;
+      height: 0;
+      position: absolute;
+      text-align: center; }
+    .yw-systemBarContainer .yw-statusToolbar-right {
+      float: right;
+      text-align: right; }
+      .yw-systemBarContainer .yw-statusToolbar-right > .z-toolbarbutton:last-child {
+        margin-right: 0; }
+      .ie10 .yw-systemBarContainer .yw-statusToolbar-right > .widget_cnt > .widget_children_list > .widget_cnt {
+        float: left; }
+      .yw-systemBarContainer .yw-statusToolbar-right .yw-toolbar > .yw-toolbar-content > .yw-toolbar-actions {
+        float: left; }
+    .yw-systemBarContainer .yw-statusToolbar > .widget_children > .widget_children_list > .widget_cnt {
+      vertical-align: top; }
+    .yw-systemBarContainer .yw-statusToolbar .yw-toolbar > .yw-toolbar-content {
+      display: inline-block; }
+    .yw-systemBarContainer .yw-statusToolbar .yw-toolbar-before > .widget_cnt:empty,
+    .yw-systemBarContainer .yw-statusToolbar .yw-toolbar-after > .widget_cnt:empty {
+      display: none; }
+    .yw-systemBarContainer .yw-statusToolbar .yw-logoContainer {
+      width: 150px;
+      height: 50px;
+      background-image: url("images/logo-commerce.svg");
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: 150px;
+      margin: 0 10px;
+      display: inline-block;
+      vertical-align: top; }
+      @media (max-width: 699px) {
+        .yw-systemBarContainer .yw-statusToolbar .yw-logoContainer {
+          width: 28px; } }
+    .yw-systemBarContainer .yw-statusToolbar .yw-perspectiveChooser {
+      display: inline-block;
+      vertical-align: top; }
+    .yw-systemBarContainer .yw-statusToolbar .yw-systemItemsContainer {
+      line-height: 50px;
+      display: inline-flex;
+      vertical-align: top; }
+    .yw-systemBarContainer .yw-statusToolbar .z-toolbarbutton {
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      vertical-align: top;
+      margin: 0;
+      padding: 0; }
+      .yw-systemBarContainer .yw-statusToolbar .z-toolbarbutton + .z-label {
+        border-color: #0486e0; }
+      .yw-systemBarContainer .yw-statusToolbar .z-toolbarbutton:hover, .yw-systemBarContainer .yw-statusToolbar .z-toolbarbutton:focus, .yw-systemBarContainer .yw-statusToolbar .z-toolbarbutton:active {
+        background-color: #32a0ec; }
+        .yw-systemBarContainer .yw-statusToolbar .z-toolbarbutton:hover + .z-label, .yw-systemBarContainer .yw-statusToolbar .z-toolbarbutton:focus + .z-label, .yw-systemBarContainer .yw-statusToolbar .z-toolbarbutton:active + .z-label {
+          border-color: #32a0ec; }
+    .yw-systemBarContainer .yw-statusToolbar span[style="display: none;"] + .z-toolbarbutton {
+      background-color: #279ae9; }
+    .yw-systemBarContainer .yw-statusToolbar .ya-toggle {
+      position: relative; }
+      .yw-systemBarContainer .yw-statusToolbar .ya-toggle-active {
+        background-color: #279ae9; }
+    .yw-systemBarContainer .yw-statusToolbar .widget_cnt {
+      display: inline-block; }
+
+.yw-systemBarMenu-popup {
+  border: none; }
+  .yw-systemBarMenu-popup .z-popup-content {
+    background: #32a0ec;
+    color: #ffffff; }
+  .yw-systemBarMenu-popup .z-popup-cl {
+    border-top: none; }
+  .yw-systemBarMenu-popup .z-listbox {
+    border: none; }
+  .yw-systemBarMenu-popup .z-listitem {
+    background-color: #32a0ec; }
+    .yw-systemBarMenu-popup .z-listitem:hover {
+      background-color: #32a0ec; }
+    .yw-systemBarMenu-popup .z-listitem .z-listcell {
+      padding: 8px 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: none;
+      background: none; }
+      .yw-systemBarMenu-popup .z-listitem .z-listcell:hover {
+        background-color: #84c6f4; }
+      .yw-systemBarMenu-popup .z-listitem .z-listcell-content {
+        padding: 5px; }
+      .yw-systemBarMenu-popup .z-listitem .z-listcell .z-listitem-checkable .z-listitem-icon.z-icon-check {
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        top: 0;
+        padding-top: 0;
+        margin-top: -5px;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: normal;
+        font-size: 16px;
+        font-family: "FontAwesome", sans-serif; }
+    .yw-systemBarMenu-popup .z-listitem .z-listcell-content,
+    .yw-systemBarMenu-popup .z-listitem .z-listcell-content .z-label, .yw-systemBarMenu-popup .z-listitem:hover .z-listcell-content {
+      color: #ffffff;
+      font-weight: normal;
+      font-size: 14px;
+      font-family: "Open Sans", sans-serif; }
+    .yw-systemBarMenu-popup .z-listitem.z-listitem-selected {
+      background-color: #32a0ec; }
+      .yw-systemBarMenu-popup .z-listitem.z-listitem-selected:hover {
+        background-color: #32a0ec; }
+      .yw-systemBarMenu-popup .z-listitem.z-listitem-selected .z-listcell {
+        background-color: #5bb3f0; }
+        .yw-systemBarMenu-popup .z-listitem.z-listitem-selected .z-listcell:hover {
+          background-color: #84c6f4; }
+        .yw-systemBarMenu-popup .z-listitem.z-listitem-selected .z-listcell .z-listitem-checkable .z-listitem-icon.z-icon-check {
+          color: #ffffff; }
+  .yw-systemBarMenu-popup-title {
+    display: block;
+    padding: 13px 15px;
+    line-height: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  .yw-systemBarMenu-popup .z-listbox-emptybody td {
+    padding: 8px 10px;
+    background-color: #32a0ec;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif; }
+
+.yw-dev-toolbar-actions .z-hbox-separator {
+  display: none; }
+.yw-dev-toolbar-actions .cng-action {
+  width: 50px; }
+  .yw-dev-toolbar-actions .cng-action img:hover, .yw-dev-toolbar-actions .cng-action img:focus, .yw-dev-toolbar-actions .cng-action img:active {
+    background: #32a0ec !important; }
+  .yw-dev-toolbar-actions .cng-action table {
+    width: 100%;
+    text-align: center !important; }
+  .yw-dev-toolbar-actions .cng-action:hover, .yw-dev-toolbar-actions .cng-action:focus, .yw-dev-toolbar-actions .cng-action:active {
+    background: #32a0ec !important; }

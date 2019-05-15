@@ -1,0 +1,16 @@
+@import "cockpitng-globals.scss";
+
+$bulkedit__attribute-row-inner--spacing: $container-spacing-default__third;
+$bulkedit__attribute-name--padding-right: $bulkedit__attribute-row-inner--spacing;
+$bulkedit__attribute-name--min-width: 130px;
+$bulkedit__attribute-name--padding-top: $container-spacing-default__third;
+$bulkedit__attribute-clear--width: 120px;
+$bulkedit__attribute-clear--padding-left: $bulkedit__attribute-row-inner--spacing;
+
+$bulkedit__attribute-icon-panel--spacing: 24px;
+$bulkedit__attribute-row--padding-top: $bulkedit__attribute-icon-panel--spacing;
+$bulkedit__attribute-icon-panel--margin-top: -20px;
+
+$bulkedit__attribute-clear-switch-checked--bg-color: $validation__error--color;
+$bulkedit__attribute-clear-switch-checked--border-color: $bulkedit__attribute-clear-switch-checked--bg-color;
+$bulkedit__attribute-value-container--padding-bottom: $container-spacing-default__third;

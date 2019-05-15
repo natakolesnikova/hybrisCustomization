@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- Page Validators -->
+	
+	<alias name="defaultCreatePageValidatorFactory" alias="cmsCreatePageValidatorFactory" />
+	<util:map id="defaultCreatePageValidatorFactory">
+		<description>deprecated since 6.6</description>
+		<entry value-ref="cmsCreatePageCompositeValidator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.AbstractPageData</value>
+			</key>
+		</entry>
+		<entry value-ref="cmsCreateContentPageCompositeValidator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.ContentPageData</value>
+			</key>
+		</entry>
+	</util:map>
+	
+	<alias name="defaultCreatePageCompositeValidator" alias="cmsCreatePageCompositeValidator" />
+	<bean id="defaultCreatePageCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="cmsBasePageValidator" />
+				<ref bean="cmsDefaultCreatePageValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultCreateContentPageCompositeValidator" alias="cmsCreateContentPageCompositeValidator" />
+	<bean id="defaultCreateContentPageCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="cmsBasePageValidator" />
+				<ref bean="createContentPageValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultBasePageValidator" alias="cmsBasePageValidator" />
+	<bean id="defaultBasePageValidator" class="de.hybris.platform.cmsfacades.pages.validator.BasePageValidator">
+		<description>deprecated since 6.6</description>
+		<property name="onlyHasSupportedCharactersPredicate" ref="onlyHasSupportedCharactersPredicate" />
+		<property name="pageExistsPredicate" ref="pageExistsPredicate" />
+		<property name="localizedValidator" ref="localizedValidator" />
+		<property name="localizedStringValidator" ref="cmsLocalizedStringValidator" />
+	</bean>
+	
+	<alias name="defaultCreatePageValidator" alias="cmsDefaultCreatePageValidator" />
+	<bean id="defaultCreatePageValidator" class="de.hybris.platform.cmsfacades.pages.validator.CreatePageValidator">
+		<description>deprecated since 6.6</description>
+		<property name="pageVariationResolverTypeRegistry" ref="cmsPageVariationResolverTypeRegistry" />		
+	</bean>
+	
+	<alias name="defaultCreateContentPageValidator" alias="createContentPageValidator" />
+	<bean id="defaultCreateContentPageValidator" class="de.hybris.platform.cmsfacades.pages.validator.CreateContentPageValidator">
+		<description>deprecated since 6.6</description>
+		<property name="primaryPageWithLabelExistsPredicate" ref="primaryPageWithLabelExistsPredicate" />	
+	</bean>
+
+	<alias name="defaultUpdatePageValidatorFactory" alias="cmsUpdatePageValidatorFactory" />
+	<util:map id="defaultUpdatePageValidatorFactory">
+		<description>deprecated since 6.6</description>
+		<entry value-ref="cmsUpdatePageCompositeValidator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.AbstractPageData</value>
+			</key>
+		</entry>
+		<entry value-ref="cmsUpdateContentPageCompositeValidator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cmsfacades.data.ContentPageData</value>
+			</key>
+		</entry>
+	</util:map>
+
+	<alias name="defaultUpdatePageCompositeValidator" alias="cmsUpdatePageCompositeValidator" />
+	<bean id="defaultUpdatePageCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="cmsUpdatePageValidator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultUpdateContentPageCompositeValidator" alias="cmsUpdateContentPageCompositeValidator" />
+	<bean id="defaultUpdateContentPageCompositeValidator" class="de.hybris.platform.cmsfacades.common.validator.CompositeValidator">
+		<description>deprecated since 6.6</description>
+		<property name="validators">
+			<list merge="true">
+				<ref bean="cmsUpdatePageValidator" />
+				<ref bean="cmsUpdateContentPageValidator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultUpdatePageValidator" alias="cmsUpdatePageValidator" />
+	<bean id="defaultUpdatePageValidator" class="de.hybris.platform.cmsfacades.pages.validator.UpdatePageValidator">
+		<description>deprecated since 6.6</description>
+		<property name="onlyHasSupportedCharactersPredicate" ref="onlyHasSupportedCharactersPredicate" />
+		<property name="pageExistsPredicate" ref="pageExistsPredicate" />
+		<property name="localizedValidator" ref="localizedValidator" />
+		<property name="localizedStringValidator" ref="cmsLocalizedStringValidator" />
+		<property name="cmsAdminPageService" ref="cmsAdminPageService" />
+	</bean>
+	
+	<alias name="defaultUpdateContentPageValidator" alias="cmsUpdateContentPageValidator" />
+	<bean id="defaultUpdateContentPageValidator" class="de.hybris.platform.cmsfacades.pages.validator.UpdateContentPageValidator">
+		<description>deprecated since 6.6</description>
+		<property name="primaryPageWithLabelExistsPredicate" ref="primaryPageWithLabelExistsPredicate" />
+		<property name="hasPageLabelChangedPredicate" ref="hasPageLabelChangedPredicate" />
+	</bean>
+	
+	<alias name="defaultFindVariationPageValidator" alias="cmsFindVariationPageValidator" />
+	<bean id="defaultFindVariationPageValidator" class="de.hybris.platform.cmsfacades.pages.validator.FindVariationPageValidator">
+		<description>deprecated since 6.6</description>
+		<property name="typeCodeExistsPredicate" ref="typeCodeExistsPredicate" />
+		<property name="typeService" ref="typeService" />
+	</bean>
+
+</beans>

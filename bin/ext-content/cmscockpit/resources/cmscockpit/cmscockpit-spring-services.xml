@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/util
+						http://www.springframework.org/schema/util/spring-util-4.0.xsd"
+	default-autowire="byName">
+
+	<alias alias="navigationNodeTreeService" name="defaultNavigationNodeTreeService" />
+	<bean id="defaultNavigationNodeTreeService" class="de.hybris.platform.cmscockpit.services.impl.DefaultNavigationNodeTreeService">
+		<property name="typeService" ref="cockpitTypeService"/>
+		<property name="cmsNavigationService" ref="cmsNavigationService"/>
+	</bean>
+
+	<alias alias="cmsSearchProvider" name="defaultCmsSearchProvider" />
+	<bean id="defaultCmsSearchProvider" class="de.hybris.platform.cmscockpit.services.impl.CmsSearchProvider">
+		<property name="cockpitTypeService" ref="cockpitTypeService"/>
+	</bean>
+
+	<alias alias="contentEditorConfigurationFactory" name="defaultContentEditorConfigurationFactory" />
+	<bean id="defaultContentEditorConfigurationFactory" class="de.hybris.platform.cmscockpit.services.config.impl.ContentEditorConfigurationFactory" parent="jaxbBasedUIComponentConfigurationFactory">
+		<property name="jaxbClass" value="de.hybris.platform.cmscockpit.services.config.jaxb.contenteditor.ContentEditor"/>
+		<property name="schemaResource" value="classpath:/cmscockpit/content-editor.xsd"/>
+	</bean>
+
+	<alias alias="contentElementConfigurationFactory" name="defaultContentElementConfigurationFactory" />
+	<bean id="defaultContentElementConfigurationFactory" class="de.hybris.platform.cmscockpit.services.config.impl.ContentElementConfigurationFactory" parent="jaxbBasedUIComponentConfigurationFactory">
+		<property name="jaxbClass" value="de.hybris.platform.cmscockpit.services.config.jaxb.contentelement.ContentElements"/>
+		<property name="schemaResource" value="classpath:/cmscockpit/content-element.xsd"/>
+	</bean>
+
+	<alias alias="loginService" name="defaultLoginService" />
+	<bean id="defaultLoginService" class="de.hybris.platform.cmscockpit.services.login.impl.LoginServiceImpl"/>
+
+	<alias alias="synchronizationService" name="defaultCMSSynchronizationService" />
+   <alias alias="defaultSynchronizationService" name="defaultCMSSynchronizationService" />
+	<bean id="defaultCMSSynchronizationService" class="de.hybris.platform.cmscockpit.sync.CMSSynchronizationService" autowire="byName">
+		<property name="relatedReferencesTypesMap">
+			<map>
+				<entry key="AbstractPage" value-ref="cmsSyncRelatedReferencesForAbstractPageType" />
+				<entry key="AbstractCMSComponent" value-ref="cmsSyncRelatedReferencesForAbstractCMSComponentType" />
+				<entry key="CMSNavigationNode" value-ref="cmsSyncRelatedReferencesForCMSNavigationNodeType" />
+				<entry key="ContentSlot" value-ref="cmsSyncRelatedReferencesForContentSlotType" />
+				<entry key="MediaContainer" value-ref="cmsSyncRelatedReferencesForMediaContainerType" />
+			</map>
+		</property>
+		<property name="searchRestrictionsDisabled" value="true"/>
+	</bean>
+	
+	<alias alias="cmsSyncRelatedReferencesForAbstractPageType" name="defaultCmsSyncRelatedReferencesForAbstractPageType"/>
+	<util:list id="defaultCmsSyncRelatedReferencesForAbstractPageType">
+		<value>AbstractPage.restrictions</value>
+		<value>AbstractPage.contentSlots</value>
+		<value>ContentSlotForPage.contentSlot</value>
+		<value>ContentSlot.cmsComponents</value>
+		<value>AbstractCMSComponentContainer.simpleCMSComponents</value>
+		<value>AbstractCMSComponentContainer.currentCMSComponents</value>
+		<value>RotatingImagesComponent.banners</value>
+		<value>AbstractCMSComponent.restrictions</value>
+	</util:list>
+	
+	<alias alias="cmsSyncRelatedReferencesForAbstractCMSComponentType" name="defaultCmsSyncRelatedReferencesForAbstractCMSComponentType"/>
+	<util:list id="defaultCmsSyncRelatedReferencesForAbstractCMSComponentType">
+		<value>AbstractCMSComponentContainer.simpleCMSComponents</value>
+		<value>AbstractCMSComponentContainer.currentCMSComponents</value>
+		<value>RotatingImagesComponent.banners</value>
+		<value>AbstractCMSComponent.restrictions</value>
+		<value>MediaContainer.medias</value>
+	</util:list>
+	
+	<alias alias="cmsSyncRelatedReferencesForCMSNavigationNodeType" name="defaultCmsSyncRelatedReferencesForCMSNavigationNodeType"/>
+	<util:list id="defaultCmsSyncRelatedReferencesForCMSNavigationNodeType">
+		<value>CMSNavigationNode.children</value>
+		<value>CMSNavigationNode.entries</value>
+		<value>CMSNavigationNode.links</value>
+		<value>CMSNavigationEntry.item</value>
+		<value>CMSLinkComponent</value>
+	</util:list>
+	
+	<alias alias="cmsSyncRelatedReferencesForContentSlotType" name="defaultCmsSyncRelatedReferencesForContentSlotType"/>
+	<util:list id="defaultCmsSyncRelatedReferencesForContentSlotType">
+		<value>ContentSlot.cmsComponents</value>
+	</util:list>
+	
+	<alias alias="cmsSyncRelatedReferencesForMediaContainerType" name="defaultCmsSyncRelatedReferencesForMediaContainerType"/>
+	<util:list id="defaultCmsSyncRelatedReferencesForMediaContainerType">
+		<value>MediaContainer.medias</value>
+	</util:list>
+
+	<alias alias="genericRandomNameProducer" name="defaultGenericRandomNameProducer" />
+	<bean id="defaultGenericRandomNameProducer" class="de.hybris.platform.cmscockpit.services.impl.GenericRandomNameProducerImpl"/>
+
+	<!--  Overridden from cockpit-spring-services.xml -->
+	<alias alias="objectCollectionService" name="defaultObjectCollectionService" />
+	<bean id="defaultObjectCollectionService" class="de.hybris.platform.cockpit.services.impl.ObjectCollectionServiceImpl">
+		<property name="cockpitTypeService" ref="cockpitTypeService"/>
+		<property name="objectTypeFilterList">
+			<list>
+				<value>AbstractPage:s</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias alias="uiAccessRightService" name="defaultUiAccessRightService" />
+	<bean id="defaultUiAccessRightService" class="de.hybris.platform.cmscockpit.services.security.impl.CMSCockpitUIAccessRightService">
+		<property name="cockpitUIComponentAccessRightDao" ref="cockpitUIComponentAccessRightDao"/>
+		<property name="userService" ref="userService"/>
+		<property name="cmsPageLockingService" ref="cmsPageLockingService"/>
+		<property name="cmsPageService" ref="cmsPageService"/>
+	</bean>
+
+	<!--  *************************************************************
+	 		*** Workflow                                              ***
+   		*************************************************************  -->
+	<alias alias="workflowService" name="workflowService" />
+	<bean id="workflowService" parent="deprecatedWorkflowService" class="de.hybris.platform.cmscockpit.services.workflow.impl.CmsWorkflowServiceImpl" />
+
+	<!--  *************************************************************
+	 		*** NewItemService=                                 ***
+   		*************************************************************  -->
+	<alias alias="newItemService" name="defaultNewItemService" />
+	<bean id="defaultNewItemService" class="de.hybris.platform.cmscockpit.services.impl.CmsNewItemServiceImpl">
+		<property name="modelService" ref="modelService" />
+		<property name="systemService" ref="systemService" />
+		<property name="i18nService" ref="i18nService"/>
+		<property name="useServiceLayer" value="true"/>
+	</bean>
+
+	<alias alias="cmsCockpitService" name="defaultCmsCockpitService" />
+	<bean id="defaultCmsCockpitService" class="de.hybris.platform.cmscockpit.services.impl.CmsCockpitServiceImpl">
+		<property name="genericRandomNameProducer" ref="genericRandomNameProducer"></property>
+		<property name="systemService" ref="systemService" />
+		<property name="localizationService" ref="localizationService"/>
+		<property name="cmsAdminPageService" ref="cmsAdminPageService"/>
+		<property name="permissionCheckingService" ref="permissionCheckingService"/>
+		<property name="userService" ref="userService"/>
+        <property name="scriptEvaluationService" ref="scriptEvaluationService"/>
+	</bean>
+
+    <alias name="DefaultCmsPageBrowserModel" alias="cmsPageBrowserModel"/>
+    <bean id="DefaultCmsPageBrowserModel" class="de.hybris.platform.cmscockpit.session.impl.CmsPageBrowserModel" scope="prototype">
+        <constructor-arg ref="cmsAdminSiteService"/>
+        <constructor-arg ref="cmsCockpitService"/>
+        <constructor-arg ref="modelService"/>
+        <constructor-arg ref="cmsAdminComponentService"/>
+        <constructor-arg ref="cmsAdminContentSlotService"/>
+    </bean>
+
+    <!-- *************************************************************
+           *** Configuration                                         ***
+         ************************************************************* -->
+
+	<alias alias="cmsItemLabelProvider" name="defaultCmsItemLabelProvider" />
+	<bean id="defaultCmsItemLabelProvider" class="de.hybris.platform.cmscockpit.services.label.impl.CMSItemLabelProvider"/>
+	<alias alias="cmsSiteLabelProvider" name="defaultCmsSiteLabelProvider" />
+	<bean id="defaultCmsSiteLabelProvider" class="de.hybris.platform.cmscockpit.services.label.impl.CMSSiteLabelProvider"/>
+
+	<alias alias="cmsNavigationEntryLabelProvider" name="defaultCmsNavigationEntryLabelProvider" />
+	<bean id="defaultCmsNavigationEntryLabelProvider" class="de.hybris.platform.cmscockpit.services.label.impl.CMSNavigationEntryLabelProvider">
+		<property name="labelService" ref="labelService"/>
+		<property name="typeService" ref="cockpitTypeService"/>
+	</bean>
+
+	<alias alias="contentPageLabelProvider" name="defaultContentPageLabelProvider" />
+	<bean id="defaultContentPageLabelProvider" class="de.hybris.platform.cmscockpit.services.label.impl.ContentPageModelLabelProvider"/>
+	<alias alias="mediaLabelProvider" name="defaultMediaLabelProvider" />
+	<bean id="defaultMediaLabelProvider" class="de.hybris.platform.cmscockpit.services.label.impl.MediaModeLabelProvider">
+		<property name="mediaInfoService" ref="mediaInfoService"/>
+	</bean>
+	<alias alias="linkComponentLabelProvider" name="defaultLinkComponentLabelProvider" />
+	<bean id="defaultLinkComponentLabelProvider" class="de.hybris.platform.cmscockpit.services.label.impl.CmsLinkComponentModelLabelProvider"/>
+
+	<alias alias="cmsCatalogBrowserModelFactory" name="defaultCmsCatalogBrowserModelFactory" />
+	<bean id="defaultCmsCatalogBrowserModelFactory" class="de.hybris.platform.cmscockpit.session.impl.DefaultCmsCatalogBrowserModelFactory" />
+
+	<alias name="defaultPreviewUrlPageResolver" alias="previewUrlPageResolver"/>
+	<bean id="defaultPreviewUrlPageResolver" class="de.hybris.platform.cmscockpit.resolvers.PreviewUrlPageResolver">
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService"/>
+	</bean>
+
+	<alias name="defaultLiveUrlPageResolver" alias="liveUrlPageResolver"/>
+	<bean id="defaultLiveUrlPageResolver" class="de.hybris.platform.cmscockpit.resolvers.LiveUrlPageResolver">
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService"/>
+	</bean>
+
+
+
+	<bean id="dummyUrlPageResolver" class="de.hybris.platform.cmscockpit.resolvers.DummyUrlPageResolver"/>
+
+
+
+	<alias name="defaultCounterpartProductCatalogVersionsStrategy" alias="counterpartProductCatalogVersionsStrategy"/>
+
+
+	<bean id="defaultCounterpartProductCatalogVersionsStrategy" class="de.hybris.platform.cmscockpit.cms.strategies.impl.DefaultCounterpartProductCatalogVersionsStrategy">
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService"/>
+	</bean>
+
+</beans>

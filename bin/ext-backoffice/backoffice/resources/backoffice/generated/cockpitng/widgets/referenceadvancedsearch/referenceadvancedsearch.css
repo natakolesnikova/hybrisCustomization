@@ -1,0 +1,22 @@
+.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearch .yw-referencesearch-cnt {
+  height: 100%; }
+
+.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearch .yw-reference-search-control .cancel-button {
+  float: left;
+  text-decoration: none;
+  margin: 0; }
+
+.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearch .yw-reference-search-control .select-button {
+  float: right;
+  text-decoration: none;
+  margin: 0; }
+
+.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearch .yw-reference-search-control {
+  border-top: 1px solid #d3d9df; }
+
+.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearch .reference-search-control-bar {
+  padding: 10px;
+  overflow: hidden; }
+
+.yw-com_hybris_cockpitng_backoffice_referenceadvancedsearch .yw-advancedsearch .yw-advancedsearch-circle-delete {
+  margin-left: 8px; }

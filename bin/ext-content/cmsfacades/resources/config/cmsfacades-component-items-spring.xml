@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+		
+	<alias name="defaultComponentItemFacade" alias="componentItemFacade" />
+	<bean id="defaultComponentItemFacade" class="de.hybris.platform.cmsfacades.items.impl.DefaultComponentItemFacade">
+		<property name="componentAdminService" ref="cmsAdminComponentService" />
+		<property name="contentSlotAdminService" ref="cmsAdminContentSlotService" />
+		<property name="adminSiteService" ref="cmsAdminSiteService" />
+		<property name="modelService" ref="modelService" />
+		<property name="cmsComponentPopulatorFactory" ref="cmsComponentPopulatorFactory" />
+		<property name="cmsComponentConverterFactory" ref="cmsComponentConverterFactory" />
+		<property name="basicCMSComponentModelConverter" ref="defaultBasicCMSComponentModelConverter" />
+		<property name="cmsItemComparator" ref="cmsItemComparator" />
+		<property name="createComponentValidator" ref="createComponentValidator" />
+		<property name="updateComponentValidator" ref="updateComponentValidator" />
+		<property name="facadeValidationService" ref="facadeValidationService" />
+		<property name="cmsSearchResultConverter" ref="cmsSearchResultConverter" />
+		<property name="sessionSearchRestrictionsDisabler" ref="cmsSessionSearchRestrictionsDisabler" />
+		<property name="componentRenderingService" ref="cmsComponentRenderingService" />
+	</bean>
+
+	<!-- Content API - Get :: Converters and Populators -->
+	<alias name="defaultCmsComponentConverterFactory" alias="cmsComponentConverterFactory" />
+	<bean id="defaultCmsComponentConverterFactory" class="de.hybris.platform.cmsfacades.items.converter.impl.DefaultCmsComponentConverterFactory">
+		<description>deprecated since 6.6</description>
+		<constructor-arg ref="cmsComponentPopulatingConverters" />
+	</bean>
+
+	<alias name="defaultBasicCMSComponentModelConverter" alias="cmsBasicCMSComponentModelConverter" />
+	<bean id="defaultBasicCMSComponentModelConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.AbstractCMSComponentData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="cmsBasicComponentModelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultParagraphComponentModelConverter" alias="cmsParagraphComponentModelConverter" />
+	<bean id="defaultParagraphComponentModelConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.CMSParagraphComponentData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="cmsBasicComponentModelPopulator" />
+				<ref bean="cmsParagraphComponentModelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultBannerComponentModelConverter" alias="cmsBannerComponentModelConverter" />
+	<bean id="defaultBannerComponentModelConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.BannerComponentData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="cmsBasicComponentModelPopulator" />
+				<ref bean="cmsBannerComponentModelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultLinkComponentModelConverter" alias="cmsLinkComponentModelConverter" />
+	<bean id="defaultLinkComponentModelConverter" parent="abstractPopulatingConverter">
+		<description>deprecated since 6.6</description>
+		<property name="targetClass" value="de.hybris.platform.cmsfacades.data.CMSLinkComponentData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="cmsBasicComponentModelPopulator" />
+				<ref bean="cmsLinkComponentModelPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultBasicCMSComponentModelPopulator" alias="cmsBasicComponentModelPopulator" />
+	<bean id="defaultBasicCMSComponentModelPopulator" class="de.hybris.platform.cmsfacades.items.populator.model.BasicCMSComponentModelPopulator">
+		<description>deprecated since 6.6</description>
+	</bean>
+	
+	<bean id="cmsParagraphComponentModelPopulator" class="de.hybris.platform.cmsfacades.items.populator.model.CmsParagraphComponentModelPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+	</bean>
+	
+	<bean id="cmsBannerComponentModelPopulator" class="de.hybris.platform.cmsfacades.items.populator.model.BannerComponentModelPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator" />
+	</bean>
+	
+	<bean id="cmsLinkComponentModelPopulator" class="de.hybris.platform.cmsfacades.items.populator.model.CmsLinkComponentModelPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+	</bean>
+	
+
+	<!-- Component Populating Converters Map --> 
+	<util:map id="cmsComponentPopulatingConverters">
+		<description>deprecated since 6.6</description>
+		<entry value-ref="cmsBasicCMSComponentModelConverter">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cms2.model.contents.components.AbstractCMSComponentModel</value>
+			</key>
+		</entry>
+		<entry value-ref="cmsParagraphComponentModelConverter">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cms2.model.contents.components.CMSParagraphComponentModel</value>
+			</key>
+		</entry>
+		<entry value-ref="cmsBannerComponentModelConverter">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cms2lib.model.components.BannerComponentModel</value>
+			</key>
+		</entry>
+		<entry value-ref="cmsLinkComponentModelConverter">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cms2.model.contents.components.CMSLinkComponentModel</value>
+			</key>
+		</entry>
+	</util:map>
+
+	<!-- Content API - PUT :: Converters and Populators -->
+	<bean id="defaultBasicComponentPopulator" class="de.hybris.platform.cmsfacades.items.populator.data.BasicComponentDataPopulator">
+		<description>deprecated since 6.6</description>
+	</bean>
+	
+	<bean id="defaultParagraphComponentPopulator" class="de.hybris.platform.cmsfacades.items.populator.data.ParagraphComponentDataPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+	</bean>
+	
+	<bean id="defaultBannerComponentPopulator" class="de.hybris.platform.cmsfacades.items.populator.data.BannerComponentDataPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+		<property name="mediaService" ref="mediaService" />
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+	</bean>
+	
+	<bean id="defaultLinkComponentPopulator" class="de.hybris.platform.cmsfacades.items.populator.data.LinkComponentDataPopulator">
+		<description>deprecated since 6.6</description>
+		<property name="localizedPopulator" ref="cmsLocalizedPopulator"/>
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+	</bean>
+
+	<!-- Composite Populator -->
+
+	<alias name="defaultBasicComponentPopulatorComposite" alias="cmsBasicComponentPopulator" />
+	<bean id="defaultBasicComponentPopulatorComposite" class="de.hybris.platform.cmsfacades.common.populator.impl.CompositePopulator">
+		<description>deprecated since 6.6</description>
+		<property name="populators">
+			<list merge="true">
+				<ref bean="defaultBasicComponentPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultParagraphComponentPopulatorComposite" alias="cmsParagraphComponentPopulator" />
+	<bean id="defaultParagraphComponentPopulatorComposite" class="de.hybris.platform.cmsfacades.common.populator.impl.CompositePopulator">
+		<description>deprecated since 6.6</description>
+		<property name="populators">
+			<list merge="true">
+				<ref bean="defaultBasicComponentPopulator" />
+				<ref bean="defaultParagraphComponentPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultBannerComponentPopulatorComposite" alias="cmsBannerComponentPopulator" />
+	<bean id="defaultBannerComponentPopulatorComposite" class="de.hybris.platform.cmsfacades.common.populator.impl.CompositePopulator">
+		<description>deprecated since 6.6</description>
+		<property name="populators">
+			<list merge="true">
+				<ref bean="defaultBasicComponentPopulator" />
+				<ref bean="defaultBannerComponentPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultLinkComponentPopulatorComposite" alias="cmsLinkComponentPopulator" />
+	<bean id="defaultLinkComponentPopulatorComposite" class="de.hybris.platform.cmsfacades.common.populator.impl.CompositePopulator">
+		<description>deprecated since 6.6</description>
+		<property name="populators">
+			<list merge="true">
+				<ref bean="defaultBasicComponentPopulator" />
+				<ref bean="defaultLinkComponentPopulator" />
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- Populator Factory -->
+	<alias name="defaultComponentPopulatorFactory" alias="cmsComponentPopulatorFactory" />
+	<bean id="defaultComponentPopulatorFactory" class="de.hybris.platform.cmsfacades.items.populator.impl.DefaultComponentDataPopulatorFactory">
+		<description>deprecated since 6.6</description>
+		<property name="populators" ref="cmsComponentPopulators" />
+	</bean>
+
+	<alias name="defaultComponentPopulators" alias="cmsComponentPopulators" />
+	<util:map id="defaultComponentPopulators">
+		<description>deprecated since 6.6</description>
+		<entry value-ref="cmsBasicComponentPopulator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cms2.model.contents.components.AbstractCMSComponentModel</value>
+			</key>
+		</entry>
+		<entry value-ref="cmsParagraphComponentPopulator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cms2.model.contents.components.CMSParagraphComponentModel</value>
+			</key>
+		</entry>
+		<entry value-ref="cmsBannerComponentPopulator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cms2lib.model.components.BannerComponentModel</value>
+			</key>
+		</entry>
+		<entry value-ref="cmsLinkComponentPopulator">
+			<key>
+				<value type="java.lang.Class">de.hybris.platform.cms2.model.contents.components.CMSLinkComponentModel</value>
+			</key>
+		</entry>
+	</util:map>
+</beans>

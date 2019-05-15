@@ -1,0 +1,134 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE UserGroup;UID[unique=true];locname[lang=en];backOfficeLoginDisabled;
+;backofficeadmingroup;Backoffice admin group;false
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
+;admingroup;backofficeadmingroup
+
+INSERT_UPDATE UserGroup;UID[unique=true];locname[lang=en];backOfficeLoginDisabled;
+;backofficeauditgroup;Backoffice audit report group;false
+
+$START_USERRIGHTS; ; ; ; ; ; ; ; ;
+Type      ; UID                  ; MemberOfGroups         ; Password ; Target         ; read ; change ; create ; remove ; change_perm
+UserGroup ; backofficeauditgroup ; auditreportgroup,itemLockingGroup       ;          ;                ;      ;        ;        ;        ;
+$END_USERRIGHTS; ; ; ; ;
+
+INSERT_UPDATE BackofficeRole;UID[unique=true];groups(uid)[mode=append];locName;name;backOfficeLoginDisabled;authorities
+;backofficeadministratorrole;admingroup,itemLockingGroup;Backoffice Administrator Role;Backoffice Administrator Role;FALSE;backofficeworkflowadmin
+;backofficeworkflowusergroup;employeegroup;Backoffice Workflow User Group;Backoffice Workflow User Group;FALSE;backofficeworkflowuser
+;backofficeworkflowadmingroup;admingroup;Backoffice Workflow Administrator Group;Backoffice Workflow Administrator Group;FALSE;backofficeworkflowadmin
+
+INSERT_UPDATE WorkflowTemplate; code[unique = true]; visibleForPrincipals(uid)[mode=append];
+;ProcessAuditReport;backofficeadministratorrole;
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;backofficeworkflowusergroup;;;;;;;;
+
+# Access Rights for Workflow Users ;;;;;;;;;
+;;;;ItemSyncTimestamp;+;;;
+;;;;SyncItemJob;+;;;
+;;;;Type;+;;;
+;;;;Product;+;+;+;+;;
+;;;;Category;+;+;+;+;;
+;;;;VariantType;+;+;+;+;;
+;;;;Catalog;+;;;
+;;;;CatalogVersion;+;+;+;+;;
+;;;;ClassificationAttributeUnit;+;;;
+;;;;Media;+;+;+;+;;
+;;;;MediaContainer;+;+;+;+;;
+;;;;MediaFormat;+;+;+;;;
+;;;;MediaFolder;+;+;+;+;;
+;;;;Vendor;+;+;+;+;+;
+;;;;StockLevel;+;+;+;+;;
+;;;;Tax;+;+;+;+;;
+;;;;TaxRow;+;+;+;+;;
+;;;;PriceRow;+;+;+;+;;
+;;;;ProductFeature;+;+;+;+;;
+;;;;ProductReference;+;+;+;+;;
+;;;;Warehouse;+;+;+;+;;
+;;;;ProductTaxCode;+;+;+;+;;
+;;;;ProductOrderLimit;+;+;+;+;;
+;;;;Job;+;+;;;;
+;;;;CronJob;+;+;;;;
+;;;;JobLog;+;+;+;;;
+;;;;CronJobHistory;+;+;+;;;
+;;;;WorkflowAction;+;+;;;;
+;;;;AbstractComment;+;+;+;+;;
+;;;;Comment;+;+;+;+;;
+;;;;Reply;+;+;+;+;;
+;;;;WorkflowItemAttachment;+;+;;;;
+;;;;Domain;+;;;;;
+;;;;Component;+;;;;;
+;;;;CommentType;+;;;;;
+;;;;CommentUserSetting;+;+;+;+;;
+;;;;CommentMetadata;+;+;+;+;;
+;;;;WorkflowDecision;+;;;;;
+;;;;UserGroup;+;;;;;
+$END_USERRIGHTS;;;;;
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;backofficeworkflowadmingroup;;;;;;;;
+
+# Access Rights for Workflow Users ;;;;;;;;;
+;;;;Job;+;+;+;;;
+;;;;CronJob;+;+;+;;;
+;;;;JobLog;+;+;+;+;;
+;;;;CronJobHistory;+;+;+;+;;
+;;;;WorkflowAction;+;+;+;+;;
+;;;;AbstractComment;+;+;+;+;;
+;;;;Comment;+;+;+;+;;
+;;;;Reply;+;+;+;+;;
+;;;;WorkflowItemAttachment;+;+;;;;
+;;;;Domain;+;;;;;
+;;;;Component;+;;;;;
+;;;;CommentType;+;;;;;
+;;;;CommentUserSetting;+;+;+;+;;
+;;;;CommentMetadata;+;+;+;+;;
+;;;;WorkflowDecision;+;+;+;+;;
+;;;;WorkflowTemplate;+;+;+;+;;
+;;;;WorkflowDecisionTemplate;+;+;+;+;;
+;;;;WorkflowActionTemplate;+;+;+;+;;
+;;;;ItemSyncTimestamp;+;;;
+;;;;SyncItemJob;+;;;
+;;;;Type;+;;;
+;;;;Product;+;+;+;+;;
+;;;;Category;+;+;+;+;;
+;;;;VariantType;+;+;+;+;;
+;;;;Catalog;+;;;
+;;;;CatalogVersion;+;+;+;+;;
+;;;;ClassificationAttributeUnit;+;;;
+;;;;Media;+;+;+;+;;
+;;;;MediaContainer;+;+;+;+;;
+;;;;MediaFormat;+;+;+;;;
+;;;;MediaFolder;+;+;+;+;;
+;;;;Vendor;+;+;+;+;+;
+;;;;StockLevel;+;+;+;+;;
+;;;;Tax;+;+;+;+;;
+;;;;TaxRow;+;+;+;+;;
+;;;;PriceRow;+;+;+;+;;
+;;;;ProductFeature;+;+;+;+;;
+;;;;ProductReference;+;+;+;+;;
+;;;;Warehouse;+;+;+;+;;
+;;;;ProductTaxCode;+;+;+;+;;
+;;;;ProductOrderLimit;+;+;+;+;;
+;;;;UserGroup;+;;;;;
+$END_USERRIGHTS;;;;;
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;employeegroup;;;;;;;;
+;;;;AuditReportData;-;-;-;-;-
+;;;;Employee.groups;;-;;;
+$END_USERRIGHTS;;;;;

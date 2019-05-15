@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<wizard-config showPrefilledValues="false" selectMode="false" createMode="true" createWithinPopup="false">
+	<displayed-properties>
+		<property qualifier="CsTicketResolutionEvent.resolutionType">
+			<parameter name="defaultValue" value="CsResolutionType.CLOSED" />
+			<parameter name="defaultValueResolver" value="defaultEnumValueResolver" />
+		</property>
+		<property qualifier="CsCustomerEvent.interventionType">
+			<parameter name="defaultValue" value="CsInterventionType.CALL" />
+			<parameter name="defaultValueResolver" value="defaultEnumValueResolver" />
+		</property>
+		<property qualifier="AbstractComment.text">
+			<parameter name="rows" value="4"/>
+			<parameter name="label_en" value="Comment"/>
+			<parameter name="label_de" value="Kommentar"/>
+		</property>
+	</displayed-properties>
+</wizard-config>

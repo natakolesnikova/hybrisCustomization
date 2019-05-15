@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+	<itemtypes>
+		<itemtype code="BackofficeRole" extends="UserGroup" jaloclass="com.hybris.backoffice.jalo.user.BackofficeRole">
+			<attributes>
+				<attribute type="StringCollection" qualifier="authorities" >
+					<modifiers read="true" write="true" />
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="Principal" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="backOfficeLoginDisabled" type="java.lang.Boolean">
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+<itemtype code="ExcelImportCronJob" extends="CronJob">
+			<attributes>
+				<attribute qualifier="excelFile" type="Media">
+					<modifiers read="true" write="true" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="referencedContent" type="Media">
+					<modifiers read="true" write="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+		<itemtype code="ExcelImportJob" extends="ServicelayerJob" />
+	</itemtypes>
+</items>
