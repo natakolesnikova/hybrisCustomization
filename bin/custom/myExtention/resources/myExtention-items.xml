@@ -17,6 +17,14 @@
 			xsi:noNamespaceSchemaLocation="items.xsd">
 
 	<itemtypes>
+
+		<itemtype code="User" generate="false" autocreate="false">
+			<attributes>
+				<attribute qualifier="dateOfBirth" type="java.util.Date">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
 <!--
 		<itemtype generate="true"
 		   code="MyProduct"
