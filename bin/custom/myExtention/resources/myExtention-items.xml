@@ -25,6 +25,16 @@
 				</attribute>
 			</attributes>
 		</itemtype>
+
+		<itemtype code="Customer" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="customerDescription" type="java.lang.String" generate="true">
+					<description>Customer email</description>
+					<persistence type="dynamic" attributeHandler="customerDescriptionHandler"/>
+					<modifiers read="true" write="false"/>
+				</attribute>
+			</attributes>
+		</itemtype>
 <!--
 		<itemtype generate="true"
 		   code="MyProduct"

@@ -17,6 +17,7 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <bean id="customerDescriptionHandler" class="com.project.dynamicAttributes.CustomerDescriptionHandler"/>
 	<!--
 	The hybris platform provides one single Spring application context for beans located at the jalo layer.
 	Each extension can add beans to this context by specifying them at this configuration file.
