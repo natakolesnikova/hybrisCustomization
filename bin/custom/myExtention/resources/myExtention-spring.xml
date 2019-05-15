@@ -18,6 +18,12 @@
            http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="customerDescriptionHandler" class="com.project.dynamicAttributes.CustomerDescriptionHandler"/>
+
+    <bean id="customerDateOfBirthInterceptor" class="com.project.interseptor.CustomerDateOfBirthInterceptor"/>
+    <bean id="customerDateOfBirthInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="customerDateOfBirthInterceptor"/>
+        <property name="typeCode" value="User"/>
+    </bean>
 	<!--
 	The hybris platform provides one single Spring application context for beans located at the jalo layer.
 	Each extension can add beans to this context by specifying them at this configuration file.
